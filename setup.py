@@ -31,7 +31,7 @@ setup(name='ilo.pledge',
           'collective.grok',
           'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer',
-          'plone.app.multilingual',
+#          'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           # -*- Extra requirements: -*-
