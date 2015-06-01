@@ -19,7 +19,7 @@ from plone.app.textfield import RichText
 
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
-from plone.multilingualbehavior.directives import languageindependent
+#from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 
 from ilo.pledge import MessageFactory as _
