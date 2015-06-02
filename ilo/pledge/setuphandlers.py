@@ -1,6 +1,9 @@
 from collective.grok import gs
 from ilo.pledge import MessageFactory as _
 
+from Products.CMFPlone.utils import _createObjectByType
+from collective.setuphelpers.structure import clearUpSite, setupStructure
+
 @gs.importstep(
     name=u'ilo.pledge', 
     title=_('ilo.pledge import handler'),
