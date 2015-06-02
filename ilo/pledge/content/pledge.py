@@ -57,26 +57,22 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-    organization = schema.TextLine(
-           title=_(u"Organization"),
-           required=False,
+    middle_initial = schema.TextLine(
+           title=_(u"Middle Initial"),
+           required=True,
         )
 
-    designation = schema.TextLine(
-           title=_(u"Function"),
-           required=False,
-        )
-
-    # city = schema.TextLine(
-    #        title=_(u"City"),
-    #        required=False,
-    #     )
+     city = schema.TextLine(
+            title=_(u"City"),
+            required=False,
+         )
 
     country = schema.TextLine(
            title=_(u"Country"),
            required=False,
         )
 
+#this should be the id of the pledge
     email1 = schema.TextLine(
            title=_(u"Email Address"),
            constraint=validateaddress,
@@ -85,6 +81,11 @@ class IPledge(form.Schema, IImageScaleTraversable):
     email2 = schema.TextLine(
            title=_(u"Enter the same email address"),
            constraint=validateaddress
+        )
+
+    pledges = schema.TextLine(
+           title=_(u"Pledges"),
+           required=False,
         )
 
     captcha = Captcha(
