@@ -6,6 +6,7 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.autoform.interfaces import IFormFieldProvider
 from zope.interface import alsoProvides
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 from zope.interface import invariant, Invalid
 
@@ -31,6 +32,9 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
     """
     Pledge Campaign
     """
+    form.widget(pledge_campain_detail=WysiwygFieldWidget)
+    pledge_campain_detail = schema.Text(title=u"Pledge Campaign")
+
     pass
 
 alsoProvides(IPledgeCampaign, IFormFieldProvider)

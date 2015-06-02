@@ -62,7 +62,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-     city = schema.TextLine(
+    city = schema.TextLine(
             title=_(u"City"),
             required=False,
          )
