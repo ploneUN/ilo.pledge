@@ -32,6 +32,12 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
     """
     Pledge Campaign
     """
+
+    title = schema.TextLine(
+           title=_(u"Title"),
+           required=True,
+        )
+
     form.widget(pledge_campain_detail=WysiwygFieldWidget)
     pledge_campain_detail = schema.Text(title=u"Pledge Campaign")
 
