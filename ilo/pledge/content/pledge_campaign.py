@@ -62,7 +62,7 @@ def _createObject(context, event):
     
     title = str(idnormalizer.normalize(context.title))
     temp_new_id = title
-    new_id = title.replace("-","")
+    new_id = temp_new_id.replace("-","")
     test = ''
     if new_id in object_Ids:
         test = filter(lambda name: new_id in name, object_Ids)

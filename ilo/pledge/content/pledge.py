@@ -23,6 +23,11 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from quintagroup.z3cform.captcha import Captcha, CaptchaWidgetFactory
 from collective import dexteritytextindexer
 
+from zope.app.container.interfaces import IObjectAddedEvent
+from Products.CMFCore.utils import getToolByName
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from plone.i18n.normalizer import idnormalizer
+
 from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
