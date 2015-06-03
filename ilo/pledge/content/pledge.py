@@ -142,19 +142,42 @@ def _createObject(context, event):
     for brain in brains:
         object_Ids.append(brain.id)
     
-    last_name = str(idnormalizer.normalize(context.last_name))
-    first_name = str(idnormalizer.normalize(context.first_name))
-    temp_new_id = last_name+'_'+first_name
-    new_id = temp_new_id.replace("-","")
+    email1 = str(idnormalizer.normalize(context.email1))
     test = ''
-    if new_id in object_Ids:
-        test = filter(lambda name: new_id in name, object_Ids)
-        if '-' not in (max(test)):
-            new_id = new_id + '-1'
-        if '-' in (max(test)):
-            new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
+    num = 0
+    if email1 in object_Ids:
+        test = filter(lambda name: email1 in name, object_Ids)
+        email1 = email1 +'-' + str(len(test))
 
-    parent.manage_renameObject(id, new_id )
+    parent.manage_renameObject(id, email1 )
+    context.setTitle(context.email1)
+
+    #exclude from navigation code
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
+
+    context.reindexObject()
+    return
+
+
+@grok.subscribe(IPledge, IObjectModifiedEvent)
+def modifyobject(context, event):
+    parent = context.aq_parent
+    id = context.getId()
+    object_Ids = []
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+    for brain in brains:
+        object_Ids.append(brain.id)
+    
+    email1 = str(idnormalizer.normalize(context.email1))
+    test = ''
+    num = 0
+    if email1 in object_Ids:
+        test = filter(lambda name: email1 in name, object_Ids)
+        email1 = email1 +'-' + str(len(test))
+
+    parent.manage_renameObject(id, email1 )
     context.setTitle(context.email1)
 
     #exclude from navigation code
