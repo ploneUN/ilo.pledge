@@ -17,8 +17,33 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-
-    <tal:block repeat="widget view/widgets/values">
+    <tal:block tal:define="brains view/contents" tal:condition="brains">
+      <table class="plain" width="100%">
+    <thead>
+    <th>Name</th>
+    <th>City</th>
+    <th>Country</th>
+    <th>Email</th>
+    <th>Pledges</th>
+    <th>Stickers</th>
+    </thead>
+    <tbody tal:repeat="brain brains">
+      <tr tal:define="obj python: brain._unrestrictedGetObject()">
+        <td><a tal:attributes="href python: brain.getPath()"tal:content="python: '%s %s %s' % (obj.first_name, obj.middle_initial, obj.last_name)"></a></td>
+        <td tal:content="python: obj.city"></td>
+        <td tal:content="python: obj.country"></td>
+        <td tal:content="python: obj.email1"></td>
+        <td tal:content="python: view.pledge_detail(obj.pledges)"></td>
+        <td tal:define=" stickers python: obj.stickers" tal:condition="python: obj.stickers">
+        <tal:element tal:repeat="sticker stickers">
+          <img tal:attributes="src python: view.sticker(sticker) + '/images/sticker_image/thumb'"/>
+        </tal:element>
+        </td>
+      </tr>
+    </tbody>
+     </table>
+    </tal:block>
+  <!--   <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
             <br />
@@ -41,7 +66,7 @@
         <tal:block define="listing_macro context/folder_listing/macros/listing">
             <metal:use_macro use-macro="listing_macro" />
         </tal:block>
-    </fieldset>
+    </fieldset> -->
 
   </metal:content-core>
 </metal:main>
