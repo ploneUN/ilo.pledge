@@ -58,14 +58,16 @@ class stickers(object):
         return SimpleVocabulary(results)
 
 #pledge detail vocabulary for dropdown
-@grok.provider(IContextSourceBinder)
-def pledge_details(context):
-    catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
-    results = []
-    for brain in brains:
-        results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
-    return SimpleVocabulary(results)
+class pledge_details(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+        results = []
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
+        return SimpleVocabulary(results)
 
 def validateaddress(value):
     try:
@@ -114,23 +116,18 @@ class IPledge(form.Schema, IImageScaleTraversable):
            constraint=validateaddress
         )
 
-    # pledges = schema.TextLine(
-    #        title=_(u"Pledges"),
-    #        required=False,
-    #     )
-
-    pledges = schema.Choice(
-            title = _(u"Pledges"),
-            required = False,
-            source = pledge_details,
-        )
-    
-    form.widget(stickers=CheckBoxFieldWidget)
-    stickers = schema.List(
-        title=u'Stickers',
-        required=True,
-        value_type=schema.Choice(source=stickers())
+    form.widget(pledges=CheckBoxFieldWidget)
+    pledges = schema.List(
+        title=u'Pledges',
+        required=False,
+        value_type=schema.Choice(source=pledge_details())
     )
+    # form.widget(stickers=CheckBoxFieldWidget)
+    # stickers = schema.List(
+    #     title=u'Stickers',
+    #     required=True,
+    #     value_type=schema.Choice(source=stickers())
+    # )
 
     captcha = Captcha(
         title=_(u'Type the code'),
@@ -211,10 +208,10 @@ def modifyobject(context, event):
 
 
 
-# class PledgeAddForm(dexterity.AddForm):
-#     grok.name('ilo.pledge.pledge')
-#     template = ViewPageTemplateFile('templates/pledgeaddform.pt')
-#     form.wrap(False)
+class PledgeAddForm(dexterity.AddForm):
+    grok.name('ilo.pledge.pledge')
+    template = ViewPageTemplateFile('templates/pledgeaddform.pt')
+    form.wrap(False)
     
 
 # class ChargeEditForm(dexterity.EditForm):

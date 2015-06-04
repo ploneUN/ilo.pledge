@@ -25,20 +25,25 @@
     <th>Country</th>
     <th>Email</th>
     <th>Pledges</th>
-    <th>Stickers</th>
+   <!--  <th>Stickers</th> -->
     </thead>
     <tbody tal:repeat="brain brains">
       <tr tal:define="obj python: brain._unrestrictedGetObject()">
-        <td><a tal:attributes="href python: brain.getPath()"tal:content="python: '%s %s %s' % (obj.first_name, obj.middle_initial, obj.last_name)"></a></td>
+        <td tal:content="python: '%s %s %s' % (obj.first_name, obj.middle_initial, obj.last_name)"></td>
         <td tal:content="python: obj.city"></td>
         <td tal:content="python: obj.country"></td>
         <td tal:content="python: obj.email1"></td>
-        <td tal:content="python: view.pledge_detail(obj.pledges)"></td>
-        <td tal:define=" stickers python: obj.stickers" tal:condition="python: obj.stickers">
+        <td tal:define="pledges python:obj.pledges" >
+           <tal:element tal:repeat="pledge pledges" tal:condition="python: obj.pledges">
+            <p tal:content="python: view.pledge_detail(pledge)"></p>
+        </tal:element>
+        </td>
+        
+       <!--  <td tal:define=" stickers python: obj.stickers" tal:condition="python: obj.stickers">
         <tal:element tal:repeat="sticker stickers">
           <img tal:attributes="src python: view.sticker(sticker) + '/images/sticker_image/thumb'"/>
         </tal:element>
-        </td>
+        </td> -->
       </tr>
     </tbody>
      </table>
