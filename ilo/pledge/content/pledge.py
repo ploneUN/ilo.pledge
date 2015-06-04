@@ -110,7 +110,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
         )
 
     email2 = schema.TextLine(
-           title=_(u"Enter the same email address"),
+           title=_(u"Verify Email Address"),
            constraint=validateaddress
         )
 
