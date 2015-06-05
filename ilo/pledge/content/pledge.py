@@ -37,20 +37,37 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 from plone.i18n.normalizer import idnormalizer
 from ilo.pledge.content.pledge_detail import IPledgeDetail
+from ilo.socialsticker.content.sticker import ISticker
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 # Interface class; used to define content-type schema.
 
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
 
+
+class stickers(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog.unrestrictedSearchResults(object_provides = ISticker.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+        results = []
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.getPath()))
+        return SimpleVocabulary(results)
+
 #pledge detail vocabulary for dropdown
-@grok.provider(IContextSourceBinder)
-def pledge_details(context):
-    catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
-    results = []
-    for brain in brains:
-        results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
-    return SimpleVocabulary(results)
+class pledge_details(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+        results = []
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
+        return SimpleVocabulary(results)
 
 def validateaddress(value):
     try:
@@ -95,20 +112,22 @@ class IPledge(form.Schema, IImageScaleTraversable):
         )
 
     email2 = schema.TextLine(
-           title=_(u"Enter the same email address"),
+           title=_(u"Verify Email Address"),
            constraint=validateaddress
         )
 
-    # pledges = schema.TextLine(
-    #        title=_(u"Pledges"),
-    #        required=False,
-    #     )
-
-    pledges = schema.Choice(
-            title = _(u"Pledges"),
-            required = False,
-            source = pledge_details,
-        )
+    form.widget(pledges=CheckBoxFieldWidget)
+    pledges = schema.List(
+        title=u'Pledges',
+        required=False,
+        value_type=schema.Choice(source=pledge_details())
+    )
+    # form.widget(stickers=CheckBoxFieldWidget)
+    # stickers = schema.List(
+    #     title=u'Stickers',
+    #     required=True,
+    #     value_type=schema.Choice(source=stickers())
+    # )
 
     captcha = Captcha(
         title=_(u'Type the code'),
@@ -186,3 +205,17 @@ def modifyobject(context, event):
 
     context.reindexObject()
     return
+
+
+
+# class PledgeAddForm(dexterity.AddForm):
+#     grok.name('ilo.pledge.pledge')
+#     template = ViewPageTemplateFile('templates/pledgeaddform.pt')
+#     form.wrap(False)
+    
+
+# class ChargeEditForm(dexterity.EditForm):
+#     grok.context(IChargeForm)
+#     template = ViewPageTemplateFile('templates/chargeeditform.pt')
+
+
