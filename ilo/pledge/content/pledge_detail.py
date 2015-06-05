@@ -38,7 +38,7 @@ class IPledgeDetail(form.Schema, IImageScaleTraversable):
     Pledge Detail
     """
 
-    form.widget(pledge_detail=WysiwygFieldWidget)
+    # form.widget(pledge_detail=WysiwygFieldWidget)
     pledge_detail = schema.Text(title=u"Pledge Detail")
 
     pass
