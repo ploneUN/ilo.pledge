@@ -55,20 +55,13 @@ def _createObject(context, event):
     for brain in brains:
         object_Ids.append(brain.id)
     
-    title = str(idnormalizer.normalize(context.pledge_detail))
-    temp_new_id = title
-    new_id = temp_new_id.replace("-","")
+    new_id = str(idnormalizer.normalize(context.pledge_detail))
     test = ''
     if new_id in object_Ids:
         test = filter(lambda name: new_id in name, object_Ids)
-        if '-' not in (max(test)):
-            new_id = new_id + '-1'
-        if '-' in (max(test)):
-            new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
-
+        new_id = new_id +'-'+str(len(test))
     parent.manage_renameObject(id, new_id )
-    new_title = title
-    context.setTitle(context.title)
+    context.setTitle('Pledge Detail '+ str(len(object_Ids)))
 
     context.reindexObject()
     return
