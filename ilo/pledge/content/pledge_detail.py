@@ -24,6 +24,10 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 
+from zope.app.container.interfaces import IObjectAddedEvent
+from Products.CMFCore.utils import getToolByName
+from plone.i18n.normalizer import idnormalizer
+
 from ilo.pledge import MessageFactory as _
 
 
@@ -40,3 +44,31 @@ class IPledgeDetail(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IPledgeDetail, IFormFieldProvider)
+
+@grok.subscribe(IPledgeDetail, IObjectAddedEvent)
+def _createObject(context, event):
+    parent = context.aq_parent
+    id = context.getId()
+    object_Ids = []
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__)
+    for brain in brains:
+        object_Ids.append(brain.id)
+    
+    title = str(idnormalizer.normalize(context.pledge_detail))
+    temp_new_id = title
+    new_id = temp_new_id.replace("-","")
+    test = ''
+    if new_id in object_Ids:
+        test = filter(lambda name: new_id in name, object_Ids)
+        if '-' not in (max(test)):
+            new_id = new_id + '-1'
+        if '-' in (max(test)):
+            new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
+
+    parent.manage_renameObject(id, new_id )
+    new_title = title
+    context.setTitle(context.title)
+
+    context.reindexObject()
+    return
