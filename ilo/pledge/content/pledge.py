@@ -66,7 +66,7 @@ class pledge_details(object):
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
+            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.pledge_details))
         return SimpleVocabulary(results)
 
 def validateaddress(value):
