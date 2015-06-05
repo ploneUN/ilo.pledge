@@ -208,10 +208,10 @@ def modifyobject(context, event):
 
 
 
-class PledgeAddForm(dexterity.AddForm):
-    grok.name('ilo.pledge.pledge')
-    template = ViewPageTemplateFile('templates/pledgeaddform.pt')
-    form.wrap(False)
+# class PledgeAddForm(dexterity.AddForm):
+#     grok.name('ilo.pledge.pledge')
+#     template = ViewPageTemplateFile('templates/pledgeaddform.pt')
+#     form.wrap(False)
     
 
 # class ChargeEditForm(dexterity.EditForm):
