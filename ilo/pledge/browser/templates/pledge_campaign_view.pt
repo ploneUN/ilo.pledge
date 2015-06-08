@@ -21,7 +21,7 @@
       <table class="plain" width="100%">
     <p>The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
     <p>Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
-    <p>insert button here</p>
+    <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">
     <p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>
     <p>Insert Pilgrimage Details Here:</p>
     <p><strong>I pledge to uphold these rights in my home and community</strong></p>
