@@ -18,7 +18,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brains view/contents" tal:condition="brains">
-      <table class="plain" width="100%">
+      <!--<table class="plain" width="100%">-->
     <p>The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
     <p>Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
     <center><a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">Take the Pledge</a></center>
@@ -29,13 +29,14 @@
     <p>Insert map count here</p>
     <center><h2>“Our Fair Home Community”</h2></center>
     <p>Insert Selfies here</p>
+    
+<!--
     <thead>
     <th>Name</th>
     <th>City</th>
     <th>Country</th>
     <th>Email</th>
     <th>Pledges</th>
-   <!--  <th>Stickers</th> -->
     </thead>
     <tbody tal:repeat="brain brains">
       <tr tal:define="obj python: brain._unrestrictedGetObject()">
@@ -52,6 +53,7 @@
     </tbody>
      </table>
     </tal:block>
+-->
   <!--   <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
