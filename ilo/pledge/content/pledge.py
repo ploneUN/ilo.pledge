@@ -157,7 +157,8 @@ def _createObject(context, event):
     id = context.getId()
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+    path = '/'.join(context.aq_parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1})
     for brain in brains:
         object_Ids.append(brain.id)
     

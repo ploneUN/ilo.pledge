@@ -59,13 +59,18 @@ def _createObject(context, event):
     id = context.getId()
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = ISelfie.__identifier__)
+    # brains = catalog.unrestrictedSearchResults(object_provides = ISelfie.__identifier__)
+
+    path = '/'.join(context.aq_parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1})
     for brain in brains:
         object_Ids.append(brain.id)
     
+
     selfie_owner = str(idnormalizer.normalize(context.selfie_owner))
     test = ''
     num = 0
+    # import pdb; pdb.set_trace()
     if selfie_owner in object_Ids:
         test = filter(lambda name: selfie_owner in name, object_Ids)
         selfie_owner = selfie_owner +'-' + str(len(test))
