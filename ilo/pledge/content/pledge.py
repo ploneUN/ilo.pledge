@@ -37,7 +37,7 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 from plone.i18n.normalizer import idnormalizer
 from ilo.pledge.content.pledge_detail import IPledgeDetail
-from ilo.socialsticker.content.sticker import ISticker
+# from ilo.socialsticker.content.sticker import ISticker
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 # Interface class; used to define content-type schema.
@@ -46,16 +46,16 @@ class InvalidEmailAddress(ValidationError):
     "Invalid email address"
 
 
-class stickers(object):
-    grok.implements(IContextSourceBinder)
-    def __call__(self,context ):
-        catalog = getToolByName(context, 'portal_catalog')
-        brains = catalog.unrestrictedSearchResults(object_provides = ISticker.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
-        results = []
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.getPath()))
-        return SimpleVocabulary(results)
+# class stickers(object):
+#     grok.implements(IContextSourceBinder)
+#     def __call__(self,context ):
+#         catalog = getToolByName(context, 'portal_catalog')
+#         brains = catalog.unrestrictedSearchResults(object_provides = ISticker.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+#         results = []
+#         for brain in brains:
+#             obj = brain._unrestrictedGetObject()
+#             results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.getPath()))
+#         return SimpleVocabulary(results)
 
 #pledge detail vocabulary for dropdown
 class pledge_details(object):
@@ -66,7 +66,7 @@ class pledge_details(object):
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=brain.Title))
+            results.append(SimpleTerm(value=brain.UID, token=brain.UID, title=obj.pledge_detail))
         return SimpleVocabulary(results)
 
 def validateaddress(value):
