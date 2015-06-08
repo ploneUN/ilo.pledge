@@ -25,9 +25,9 @@
     <p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>
     <p>Insert Pilgrimage Details Here:</p>
     <p><strong>I pledge to uphold these rights in my home and community</strong></p>
-    <h2>"My Fair Home Pledge throughout Asia Pacific"</h2>
+    <center><h2>"My Fair Home Pledge throughout Asia Pacific"</h2></center>
     <p>Insert map count here</p>
-    <h2>“Our Fair Home Community”</h2>
+    <center><h2>“Our Fair Home Community”</h2></center>
     <p>Insert Selfies here</p>
     <thead>
     <th>Name</th>
@@ -48,12 +48,6 @@
             <p tal:content="python: view.pledge_detail(pledge)"></p>
         </tal:element>
         </td>
-        
-       <!--  <td tal:define=" stickers python: obj.stickers" tal:condition="python: obj.stickers">
-        <tal:element tal:repeat="sticker stickers">
-          <img tal:attributes="src python: view.sticker(sticker) + '/images/sticker_image/thumb'"/>
-        </tal:element>
-        </td> -->
       </tr>
     </tbody>
      </table>
