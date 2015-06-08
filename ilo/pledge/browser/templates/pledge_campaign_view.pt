@@ -19,9 +19,16 @@
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brains view/contents" tal:condition="brains">
       <table class="plain" width="100%">
-    <h1>My Fair Home</h1>
     <p>The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
     <p>Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
+    <p>insert button here</p>
+    <p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>
+    <p>Insert Pilgrimage Details Here:</p>
+    <p><strong>I pledge to uphold these rights in my home and community</strong></p>
+    <h2>"My Fair Home Pledge throughout Asia Pacific"</h2>
+    <p>Insert map count here</p>
+    <h2>“Our Fair Home Community”</h2>
+    <p>Insert Selfies here</p>
     <thead>
     <th>Name</th>
     <th>City</th>
