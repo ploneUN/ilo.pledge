@@ -24,7 +24,7 @@
     <center><a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">Take the Pledge</a></center>
     <p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>
     
-    <tal:element tal:repeat="brain python: view.pledge_details()">
+    <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
       <p tal:content="python: brain._unrestrictedGetObject().pledge_detail"></p>
     </tal:element>
     
@@ -32,7 +32,10 @@
     <center><h2>"My Fair Home Pledge throughout Asia Pacific"</h2></center>
     <p>Insert map count here</p>
     <center><h2>“Our Fair Home Community”</h2></center>
-    <p>Insert Selfies here</p>
+    <tal:element tal:define="brains python: view.selfies() " tal:repeat="brain brains" tal:condition="brains">
+      <p tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p>
+      <img tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+    </tal:element>
     </tal:block>
 <!--
     <thead>

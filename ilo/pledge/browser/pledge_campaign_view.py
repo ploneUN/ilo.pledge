@@ -49,4 +49,10 @@ class Index(dexterity.DisplayForm):
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 1}, portal_type='ilo.pledge.pledgedetail', review_state='published')
         return brains
 
+    def selfies(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 1}, portal_type='ilo.pledge.selfie', review_state='published')
+        return brains
 
