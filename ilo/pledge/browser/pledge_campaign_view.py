@@ -42,4 +42,11 @@ class Index(dexterity.DisplayForm):
             result = brain.getPath()
         return result
 
+    def pledge_details(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 1}, portal_type='ilo.pledge.pledgedetail', review_state='published')
+        return brains
+
 
