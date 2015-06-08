@@ -23,6 +23,11 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective import dexteritytextindexer
 
 from ilo.pledge import MessageFactory as _
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.app.container.interfaces import IObjectAddedEvent
+from Products.CMFCore.utils import getToolByName
+
+from plone.i18n.normalizer import idnormalizer
 
 
 # Interface class; used to define content-type schema.
@@ -44,3 +49,33 @@ class ISelfie(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(ISelfie, IFormFieldProvider)
+
+
+
+
+@grok.subscribe(ISelfie, IObjectAddedEvent)
+def _createObject(context, event):
+    parent = context.aq_parent
+    id = context.getId()
+    object_Ids = []
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog.unrestrictedSearchResults(object_provides = ISelfie.__identifier__)
+    for brain in brains:
+        object_Ids.append(brain.id)
+    
+    selfie_owner = str(idnormalizer.normalize(context.selfie_owner))
+    test = ''
+    num = 0
+    if selfie_owner in object_Ids:
+        test = filter(lambda name: selfie_owner in name, object_Ids)
+        selfie_owner = selfie_owner +'-' + str(len(test))
+
+    parent.manage_renameObject(id, selfie_owner )
+    context.setTitle(context.selfie_owner)
+
+    #exclude from navigation code
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
+
+    context.reindexObject()
+    return

@@ -25,10 +25,10 @@
     <p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>
     
     <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
-      <p tal:content="python: brain._unrestrictedGetObject().pledge_detail"></p>
+      <li><p tal:content="python: brain._unrestrictedGetObject().pledge_detail"></p></li>
     </tal:element>
     
-    <p><strong>I pledge to uphold these rights in my home and community</strong></p>
+    <p><strong><center>I pledge to uphold these rights in my home and community</center></strong></p>
     <center><h2>"My Fair Home Pledge throughout Asia Pacific"</h2></center>
     <p>Insert map count here</p>
     <center><h2>“Our Fair Home Community”</h2></center>
