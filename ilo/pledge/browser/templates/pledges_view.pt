@@ -19,8 +19,8 @@
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brains view/contents" tal:condition="brains">
       <li tal:repeat="brain brains">
-        <element tal:content="python: brain._unrestrictedGetObject().first_name"></element>
-        <element tal:content="python: brain._unrestrictedGetObject().middle_initial"></element>
+        <element tal:content="python: brain._unrestrictedGetObject().first_name + ' '"></element>
+        <element tal:content="python: brain._unrestrictedGetObject().middle_initial + ' '"></element>
         <element tal:content="python: brain._unrestrictedGetObject().last_name + ','"></element>
 
         <element tal:condition="python: brain._unrestrictedGetObject().city" tal:content="python: brain._unrestrictedGetObject().city + ','"></element>
