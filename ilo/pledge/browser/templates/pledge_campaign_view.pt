@@ -32,10 +32,14 @@
     <center><h2>"My Fair Home Pledge throughout Asia Pacific"</h2></center>
     <p>Insert map count here</p>
     <center><h2>“Our Fair Home Community”</h2></center>
-    <tal:element tal:define="brains python: view.selfies() " tal:repeat="brain brains" tal:condition="brains">
-      <p tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p>
-      <img tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
-    </tal:element>
+      <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+            <tal:element tal:define="brains python: view.selfies() " tal:repeat="brain brains" tal:condition="brains">
+                  <li>
+                       <img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p> 
+                  </li>
+            </tal:element>
+      </ul>
     </tal:block>
 <!--
     <thead>
