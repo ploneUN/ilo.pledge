@@ -129,6 +129,12 @@ class IPledge(form.Schema, IImageScaleTraversable):
     #     value_type=schema.Choice(source=stickers())
     # )
 
+    domestic_workers = schema.Bool(
+        title=u'ARE employers of domestic workers',
+        required=False,
+        default=False
+    )
+
     captcha = Captcha(
         title=_(u'Type the code'),
         description=_(u'Type the code from the picture shown below.'))
@@ -163,14 +169,16 @@ def _createObject(context, event):
         object_Ids.append(brain.id)
     
     email1 = str(idnormalizer.normalize(context.email1))
+    new_id = email1.replace('-','_')
+    
     test = ''
     num = 0
-    if email1 in object_Ids:
-        test = filter(lambda name: email1 in name, object_Ids)
-        email1 = email1 +'-' + str(len(test))
+    if new_id in object_Ids:
+        test = filter(lambda name: new_id in name, object_Ids)
+        new_id = new_id +'_' + str(len(test))
 
-    parent.manage_renameObject(id, email1 )
-    context.setTitle(context.email1)
+    parent.manage_renameObject(id, new_id )
+    context.setTitle(new_id)
 
     #exclude from navigation code
     # behavior = IExcludeFromNavigation(context)
@@ -186,19 +194,22 @@ def modifyobject(context, event):
     id = context.getId()
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+    path = '/'.join(context.aq_parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1})
     for brain in brains:
         object_Ids.append(brain.id)
     
     email1 = str(idnormalizer.normalize(context.email1))
+    new_id = email1.replace('-','_')
+    
     test = ''
     num = 0
-    if email1 in object_Ids:
-        test = filter(lambda name: email1 in name, object_Ids)
-        email1 = email1 +'-' + str(len(test))
+    if new_id in object_Ids:
+        test = filter(lambda name: new_id in name, object_Ids)
+        new_id = new_id +'_' + str(len(test))
 
-    parent.manage_renameObject(id, email1 )
-    context.setTitle(context.email1)
+    parent.manage_renameObject(id, new_id )
+    context.setTitle(new_id)
 
     #exclude from navigation code
     # behavior = IExcludeFromNavigation(context)
