@@ -17,8 +17,48 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+    <tal:block tal:define="brains view/contents" tal:condition="brains">
+      <table class="" >
+        <tbody tal:repeat="brain brains">
+          <td tal:condition="python: brain._unrestrictedGetObject().domestic_workers == True">Employer of Domestic Workers</td>
+        <tr>
+          <td>First Name:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().first_name"></td>
+        </tr>
+        <tr>
+          <td>Last Name:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().last_name"></td>
+        </tr>
+        <tr>
+          <td>Middle Initial:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().middle_initial"></td>
+        </tr>
+        <tr>
+          <td>City:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().city"></td>
+        </tr>
+        <tr>
+          <td>Country:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().country"></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
+        </tr>
+        <tr>
+          <td>Pledges:</td>
+        </tr>
+        <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
+          <td tal:content="python: view.pledge_detail(pledge)"></td>
+        </tr>
 
-    <tal:block repeat="widget view/widgets/values">
+     </tbody>
+      </table>
+
+
+    </tal:block>
+
+  <!--   <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description','email2','captcha')">
             <label tal:content="widget/label" />
             <br />
@@ -34,7 +74,7 @@
             <br />
             <div tal:content="structure widget/render" />
         </div>
-    </fieldset>
+    </fieldset> -->
 
 
   </metal:content-core>
