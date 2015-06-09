@@ -40,6 +40,8 @@ from ilo.pledge.content.pledge_detail import IPledgeDetail
 # from ilo.socialsticker.content.sticker import ISticker
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransitionEvent
 # Interface class; used to define content-type schema.
 
 class InvalidEmailAddress(ValidationError):
@@ -207,6 +209,12 @@ def modifyobject(context, event):
     context.reindexObject()
     return
 
+@grok.subscribe(IPledge, IAfterTransitionEvent)
+def _changeState(context, event):
+    wf = getToolByName(context, 'portal_workflow')
+    curr_state = wf.getInfoFor(context, 'review_state')
+    if curr_state == 'pending':
+        context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
 
 
 # class PledgeAddForm(dexterity.AddForm):
