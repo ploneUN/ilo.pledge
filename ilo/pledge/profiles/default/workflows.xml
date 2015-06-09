@@ -11,7 +11,7 @@
   <type type_id="ilo.pledge.pledgecampaign">
    <bound-workflow workflow_id="ilopledge.pledgecampaign"/>
   </type>
-  <type type_id="ilo.pledge.pledgedetail">
+  <type type_id="ilo.pledge.pledge">
    <bound-workflow workflow_id="ilopledge.pledge"/>
   </type>
  </bindings>
