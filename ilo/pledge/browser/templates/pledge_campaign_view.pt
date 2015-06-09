@@ -6,6 +6,13 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ilo.pledge">
 <body>
+      <metal:styleslot fill-slot="style_slot">
+            <style type="text/css">
+                  div#edit-bar{
+                      display: none;
+                  }
+            </style>
+      </metal:styleslot>
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
