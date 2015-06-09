@@ -35,6 +35,8 @@ setup(name='ilo.pledge',
 #          'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           'quintagroup.z3cform.captcha',
+          'collective.easytemplate',
+          'collective.setuphelpers',
           # -*- Extra requirements: -*-
       ],
       extras_require={
