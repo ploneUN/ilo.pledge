@@ -18,9 +18,9 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brains view/contents" tal:condition="brains">
-      <table class="" >
+      <table class="plain" >
         <tbody tal:repeat="brain brains">
-          <td tal:condition="python: brain._unrestrictedGetObject().domestic_workers == True">Employer of Domestic Workers</td>
+          <td colspan="2" tal:condition="python: brain._unrestrictedGetObject().domestic_workers == True">Employer of Domestic Workers</td>
         <tr>
           <td>First Name:</td>
           <td tal:content="python: brain._unrestrictedGetObject().first_name"></td>
@@ -46,10 +46,10 @@
           <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
         </tr>
         <tr>
-          <td>Pledges:</td>
+          <td colspan="2">Pledges:</td>
         </tr>
         <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
-          <td tal:content="python: view.pledge_detail(pledge)"></td>
+          <td colspan="2" tal:content="python: view.pledge_detail(pledge)"></td>
         </tr>
 
      </tbody>
