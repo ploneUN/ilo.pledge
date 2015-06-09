@@ -105,6 +105,12 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=False,
         )
 
+    domestic_workers = schema.Bool(
+        title=u'ARE employers of domestic workers',
+        required=False,
+        default=False
+    )
+
 #this should be the id of the pledge
     email1 = schema.TextLine(
            title=_(u"Email Address"),
@@ -128,12 +134,6 @@ class IPledge(form.Schema, IImageScaleTraversable):
     #     required=True,
     #     value_type=schema.Choice(source=stickers())
     # )
-
-    domestic_workers = schema.Bool(
-        title=u'ARE employers of domestic workers',
-        required=False,
-        default=False
-    )
 
     captcha = Captcha(
         title=_(u'Type the code'),
