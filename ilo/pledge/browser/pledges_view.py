@@ -24,6 +24,15 @@ class pledges_view(dexterity.DisplayForm):
     	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledge',review_state='published')
     	return brains
 
+    def pledge_detail(self, uid = None):
+        catalog = self.catalog
+        context = self.context
+        result = ""
+        brains = catalog.unrestrictedSearchResults(object_provides=IPledgeDetail.__identifier__, UID= uid)
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            result = obj.pledge_detail
+        return result
 
 
 
