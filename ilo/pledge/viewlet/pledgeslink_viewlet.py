@@ -12,17 +12,4 @@ class pledgeslink_viewlet(grok.Viewlet):
     grok.template('pledgeslink_viewlet')
     grok.viewletmanager(IAboveContent)
 
-    @property
-    def catalog(self):
-        return getToolByName(self.context, 'portal_catalog')
-
-    def contents(self):
-        context = self.context
-        catalog = self.catalog
-        path = '/'.join(context.aq_parent.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledgecampaign',review_state='published')
-        return brains
-
-
-
 
