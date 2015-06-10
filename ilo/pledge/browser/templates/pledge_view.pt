@@ -52,10 +52,10 @@
           <td>Country:</td>
           <td tal:content="python: brain._unrestrictedGetObject().country"></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>Email:</td>
           <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2">Pledges:</td>
         </tr>
