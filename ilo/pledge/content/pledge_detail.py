@@ -40,7 +40,10 @@ class IPledgeDetail(form.Schema, IImageScaleTraversable):
 
     # form.widget(pledge_detail=WysiwygFieldWidget)
     pledge_detail = schema.Text(title=u"Pledge Detail")
-
+    pledge_logo = NamedBlobFile(
+        title=u'Upload Pledge Loge',
+        required=True,
+    )
     pass
 
 alsoProvides(IPledgeDetail, IFormFieldProvider)
