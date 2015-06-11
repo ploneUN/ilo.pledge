@@ -228,10 +228,10 @@ def _changeState(context, event):
         context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
 
 
-# class PledgeAddForm(dexterity.AddForm):
-#     grok.name('ilo.pledge.pledge')
-#     template = ViewPageTemplateFile('templates/pledgeaddform.pt')
-#     form.wrap(False)
+class PledgeAddForm(dexterity.AddForm):
+    grok.name('ilo.pledge.pledge')
+    template = ViewPageTemplateFile('templates/pledgeaddform.pt')
+    form.wrap(False)
     
 
 # class ChargeEditForm(dexterity.EditForm):
