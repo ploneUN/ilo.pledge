@@ -20,6 +20,7 @@
         name="ilo.pledge"
         directory="static"/>
 
+    <browser:view name="load-pledge-image" for="*" class=".utils.PledgeLogoImage" permission="zope.Public"/>
     <!-- -*- extra stuff goes here -*- -->
 
 </configure>
