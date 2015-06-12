@@ -23,6 +23,9 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective import dexteritytextindexer
 
 from ilo.pledge import MessageFactory as _
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.app.container.interfaces import IObjectAddedEvent
+from Products.CMFCore.utils import getToolByName
 
 
 # Interface class; used to define content-type schema.
@@ -48,7 +51,7 @@ class INetworking(form.Schema, IImageScaleTraversable):
         )
 
     interested = schema.Bool(
-        title=u'Click here if you are interested in learning more about domestic workers’ rights in your region.',
+        title=_(u"Click here if you are interested in learning more about domestic workers' rights in your region."),
         required=False,
         default=False
     )
