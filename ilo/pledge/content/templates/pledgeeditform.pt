@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<metal:javascript_head fill-slot="javascript_head_slot">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var current_url = $('span#current_url').html();
+      var initial_count = $("input[name='form.widgets.pledges:list']:checked").length;
+      if (initial_count > 0) {
+        $.ajax({
+            url:current_url+'/load-pledge-image',
+            type:'POST',
+            dataType:'json',
+            success:function(result){
+                //$('img#pledge-logo').attr('src', result.img_src);
+                $('div#pledge-logo').html('<img src='+result.img_src+' alt=""/>');
+            },
+            data:{
+              count:initial_count,
+              path:current_url
+            }
+        })
+      }
+            $("input[name='form.widgets.pledges:list']").change(function(){
+                 var checkedCount = $("input[name='form.widgets.pledges:list']:checked").length;
+                 if (checkedCount > 0) {
+                  $.ajax({
+                      url:current_url+'/load-pledge-image',
+                      type:'POST',
+                      dataType:'json',
+                      success:function(result){
+                          //$('img#pledge-logo').attr('src', result.img_src);
+                          $('div#pledge-logo').html('<img src='+result.img_src+' alt=""/>');
+                      },
+                      data:{
+                        count:checkedCount,
+                        path:current_url
+                      }
+                  })
+                 }else{
+                     $('div#pledge-logo').html('');
+                 }
+            })
+      })
+</script>
+</metal:javascript_head>
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+      <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+    <div id="content-core">
+            <div id='pledge-logo'>
+                  <!-- loaded image here -->
+            </div>
+            <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+            <span id="current_url" tal:content="context/absolute_url" style='display: none'></span>
+    </div>
+      <!-- Custom section goes here below the form -->
+
+      
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
+<!--  
+ var x = document.querySelector('#form-widgets-stickers-0 + label').innerHTML
+ var text =  $(x).text()+'/images/sticker_image';
+  alert(text);
+     document.querySelector('#form-widgets-stickers-0 + label' ).innerHTML =;
+ -->
