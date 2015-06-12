@@ -234,8 +234,8 @@ class PledgeAddForm(dexterity.AddForm):
     form.wrap(False)
     
 
-# class ChargeEditForm(dexterity.EditForm):
-#     grok.context(IChargeForm)
-#     template = ViewPageTemplateFile('templates/chargeeditform.pt')
+class PledgeEditForm(dexterity.EditForm):
+    grok.context(IPledge)
+    template = ViewPageTemplateFile('templates/pledgeeditform.pt')
 
 
