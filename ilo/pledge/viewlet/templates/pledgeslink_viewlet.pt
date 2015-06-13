@@ -1,4 +1,4 @@
 
-<div class="state-sign">
-    <a class="button" tal:attributes="href python: context.absolute_url() + '/pledges_view'">View all pledges</a>
+<div class="side_viewlet state-sign">
+    <a class="button expand" tal:attributes="href python: context.absolute_url() + '/pledges_view'">View all pledges</a>
 </div>

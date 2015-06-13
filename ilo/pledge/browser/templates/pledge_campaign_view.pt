@@ -26,16 +26,21 @@
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brains view/contents">
       <!--<table class="plain" width="100%">-->
-    <p>There are 53 million domestic workers worldwide – working as cleaners, housekeepers, and as carers for children and the elderly.</p>
-    <p>The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
-    <p>Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
-    <center>
+      <!--<div class="pledege-logo text-center">
+            <img src="/++theme++idwfed.theme/pd_img/c189_banner.png" alt="Pledge Logo" />
+      </div>-->
+      <p class="text-center">There are 53 million domestic workers worldwide – working as cleaners, housekeepers, and as carers for children and the elderly.</p>
+      <p class="text-center">The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
+      <p class="text-center">Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
+      <center>
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
 <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">Take the Commitment</a></center>
-    <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->    
-    <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
-      <li><p tal:content="python: brain._unrestrictedGetObject().pledge_detail"></p></li>
-    </tal:element>
+    <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->
+      <ul class="square">
+            <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
+                  <li tal:content="python: brain._unrestrictedGetObject().pledge_detail">
+            </tal:element>
+      </ul>
     
     <p><strong><center>I pledge to uphold these rights in my home and community</center></strong></p>
     <center><h3>"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
