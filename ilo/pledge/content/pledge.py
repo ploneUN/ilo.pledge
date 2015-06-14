@@ -120,7 +120,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
         )
 
     domestic_workers = schema.Bool(
-        title=u'ARE employers of domestic workers',
+        title=u'Employer of domestic worker/s',
         required=False,
         default=False
     )
