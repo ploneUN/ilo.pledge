@@ -38,7 +38,7 @@
     <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->
       <ul class="square">
             <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
-                  <li tal:content="python: brain._unrestrictedGetObject().pledge_detail">
+                  <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
             </tal:element>
       </ul>
     
