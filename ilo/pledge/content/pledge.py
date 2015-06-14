@@ -231,8 +231,49 @@ def modifyobject(context, event):
 def _changeState(context, event):
     wf = getToolByName(context, 'portal_workflow')
     curr_state = wf.getInfoFor(context, 'review_state')
+    mailhost = getToolByName(context, 'MailHost')
     if curr_state == 'pending':
         context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
+        if context.email1:
+            ## Email to afterfive
+            mSubj = "Signature Received"
+            mFrom = "afterfive2015@gmail.com"
+            mTo = "afterfive2015@gmail.com"
+            mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new signatory.\n"
+            mBody += "Name: "+context.first_name+" "+context.middle_initial+" "+context.last_name+"\n"
+            mBody += "City: "+context.city+"\n"
+            mBody += "Country: "+context.country+"\n"
+            mBody += "Email: "+context.email1+"\n"
+            mBody += "\n"
+            mBody += "To review the above signature, visit:\n\n"
+            mBody += context.absolute_url()+"\n\n"
+            mBody += "To approve the post, click on the link below:\n\n"
+            mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish"
+            mBody += "\n\n"
+            
+            mBody += "-------------------------\n"
+            mBody += "IDWF Portal"
+            
+            
+            mSubj_1 = "Pledge Received"
+            mTo_1 = context.email1
+            mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your signature details from the link below:\n\n"
+            mBody_1 += context.absolute_url()+"\n\n"
+            mBody_1 += "We will review your submission and once approved, your name will appear in the list of supporters.\n\n"
+            mBody_1 += "If you find that there are errors to your submission, please email afterfive2015@gmail.com\n\n"
+            mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwf.org\n\n"
+            mBody_1 += "\n\n\n"
+            mBody_1 += "-------------------------\n"
+            mBody_1 += "IDWF Portal\n"
+            mBody_1 += "http://www.idwf.org"
+            
+            try:
+                mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
+                
+                mailhost.send(mBody_1, mto=mTo_1, mfrom=mFrom, subject=mSubj_1, immediate=True, charset='utf8', msg_type=None)
+            except ValueError, e:
+                context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+                return None
 
 
 class PledgeAddForm(dexterity.AddForm):
