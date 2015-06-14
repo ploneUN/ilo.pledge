@@ -26,30 +26,15 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-        <ul class="large-block-grid-4">
-            <li>
-              <a href="#" data-reveal-id="fbModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_fb.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="tweetModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_tw.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="instaModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_in.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="emailModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_email.png" />
-              </a>
-            </li>
-          </ul>
-      
+        
+    <div tal:condition="view/pledge_logo">
+      <img tal:attributes="src view/pledge_logo"/>
+    </div>
     <h1 tal:content="python: 'from ' + context.getId()"></h1>
+    <ul class='square' tal:define="pledges context/pledges" tal:condition="pledges">
+      <li tal:repeat="pledge pledges" tal:content="python: view.pledge_detail(pledge)"/>
+    </ul>
+    
     <tal:block tal:define="brains view/contents" tal:condition="brains">
       <table class="plain" >
         <tbody tal:repeat="brain brains">
@@ -79,18 +64,41 @@
           <td>Email:</td>
           <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
         </tr> -->
-        <tr>
+        <!--<tr>
           <td colspan="2">Pledges:</td>
         </tr>
         <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
           <td colspan="2" tal:content="python: view.pledge_detail(pledge)"></td>
-        </tr>
+        </tr>-->
 
      </tbody>
       </table>
 
 
     </tal:block>
+    
+    <ul class="large-block-grid-4">
+            <li>
+              <a href="#" data-reveal-id="fbModal">
+                <img src="/++theme++idwfed.theme/pd_img/share_fb.png" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-reveal-id="tweetModal">
+                <img src="/++theme++idwfed.theme/pd_img/share_tw.png" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-reveal-id="instaModal">
+                <img src="/++theme++idwfed.theme/pd_img/share_in.png" />
+              </a>
+            </li>
+            <li>
+              <a href="#" data-reveal-id="emailModal">
+                <img src="/++theme++idwfed.theme/pd_img/share_email.png" />
+              </a>
+            </li>
+          </ul>
 
   <!--   <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description','email2','captcha')">
