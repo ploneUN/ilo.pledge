@@ -29,7 +29,7 @@
         
 
     <div tal:condition="view/pledge_logo">
-      <img tal:attributes="src view/pledge_logo"/>
+      <center><img tal:attributes="src view/pledge_logo"/></center>
     </div>
 
     <a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">Networking</a>
