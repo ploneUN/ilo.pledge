@@ -64,7 +64,12 @@ class pledge_details(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
         catalog = getToolByName(context, 'portal_catalog')
-        brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+        #brains = catalog.unrestrictedSearchResults(object_provides = IPledgeDetail.__identifier__,sort_on='sortable_title', sort_order='ascending', review_state='published')
+        if context.portal_type == 'ilo.pledge.pledgecampaign':
+            path = '/'.join(context.getPhysicalPath())
+        else:
+            path = '/'.join(context.aq_parent.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledgedetail',review_state='published')
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
