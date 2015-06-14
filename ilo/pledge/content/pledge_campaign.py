@@ -45,6 +45,26 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
 
     form.widget(pledge_campain_detail=WysiwygFieldWidget)
     pledge_campain_detail = schema.Text(title=u"Pledge Campaign")
+    
+    button_label = schema.TextLine(
+        title=_(u"Label for Button"),
+        required=False,
+    )
+    
+    map_header = schema.TextLine(
+        title=_(u"Map Header"),
+        required=False,
+    )
+    
+    selfie_header = schema.TextLine(
+        title=_(u"Selfie Header"),
+        required=False,
+    )
+    
+    i_pledge = schema.Text(
+        title=_(u"I Pledge"),
+        required=False,
+    )
 
     pass
 
