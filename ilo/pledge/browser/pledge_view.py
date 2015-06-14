@@ -29,6 +29,6 @@ class Index(dexterity.DisplayForm):
         result = ""
         brains = catalog.unrestrictedSearchResults(object_provides=IPledgeDetail.__identifier__, UID= uid)
         for brain in brains:
-       	    obj = brain._unrestrictedGetObject()
+            obj = brain._unrestrictedGetObject()
             result = obj.pledge_detail
         return result
