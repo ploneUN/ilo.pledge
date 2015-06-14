@@ -32,7 +32,7 @@
       <center><img tal:attributes="src view/pledge_logo"/></center>
     </div>
 
-    <a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">Networking</a>
+    <!--<a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">Networking</a>-->
     
     <ul class='pledge-item' tal:define="pledges context/pledges" tal:condition="pledges">
       <li tal:repeat="pledge pledges" tal:content="python: view.pledge_detail(pledge)"/>
@@ -108,6 +108,11 @@
                                 <img src="/++theme++idwfed.theme/pd_img/share_email.png" />
                               </a>
                             </li>
+                            <li>
+                              <a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">
+                                <img src="/++theme++idwfed.theme/pd_img/c189_network.png" />
+                              </a>
+                            </li>
                       </ul>
                 </div>
             </div>
@@ -137,4 +142,3 @@
 
 </body>
 </html>
-
