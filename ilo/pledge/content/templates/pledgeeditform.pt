@@ -10,6 +10,7 @@
       <style type="text/css" media="all">
          #portal-column-two, #sidebar-right, .discreet{display:none;}
          #portal-column-content{width: 75%}
+         .horizontal {line-height: 51px;}
       </style>  
 </metal:styleslot>
 <metal:javascript_head fill-slot="javascript_head_slot">
