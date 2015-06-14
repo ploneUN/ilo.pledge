@@ -77,12 +77,12 @@
                                     <td>Email:</td>
                                     <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
                                   </tr> -->
-                                  <tr>
+                                <!--   <tr>
                                     <td colspan="2">Pledges:</td>
                                   </tr>
                                   <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
                                     <td colspan="2" tal:content="python: view.pledge_detail(pledge)"></td>
-                                  </tr>
+                                  </tr> -->
                           
                                 </tbody>
                             </table>
