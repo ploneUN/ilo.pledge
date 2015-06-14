@@ -26,71 +26,79 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-        <ul class="large-block-grid-4">
-            <li>
-              <a href="#" data-reveal-id="fbModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_fb.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="tweetModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_tw.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="instaModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_in.png" />
-              </a>
-            </li>
-            <li>
-              <a href="#" data-reveal-id="emailModal">
-                <img src="/++theme++idwfed.theme/pd_img/share_email.png" />
-              </a>
-            </li>
-          </ul>
-      
-    <h1 tal:content="python: 'from ' + context.getId()"></h1>
-    <tal:block tal:define="brains view/contents" tal:condition="brains">
-      <table class="plain" >
-        <tbody tal:repeat="brain brains">
-
-          <td colspan="2" tal:condition="python: brain._unrestrictedGetObject().domestic_workers == True">Employer of Domestic Workers</td>
-        <tr>
-          <td>First Name:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().first_name"></td>
-        </tr>
-        <tr>
-          <td>Last Name:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().last_name"></td>
-        </tr>
-        <tr>
-          <td>Middle Initial:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().middle_initial"></td>
-        </tr>
-        <tr>
-          <td>City:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().city"></td>
-        </tr>
-        <tr>
-          <td>Country:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().country"></td>
-        </tr>
-        <!-- <tr>
-          <td>Email:</td>
-          <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
-        </tr> -->
-        <tr>
-          <td colspan="2">Pledges:</td>
-        </tr>
-        <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
-          <td colspan="2" tal:content="python: view.pledge_detail(pledge)"></td>
-        </tr>
-
-     </tbody>
-      </table>
-
-
-    </tal:block>
+        
+            <ul class="pledge-item">
+                  <li>I will negotiate the terms and conditions of employment with any domestic workers in my home, ensuring a mutual understanding through a written agreement.</li>
+                  <li>I will ensure that domestic workers in my home are able to spend their free time wherever and however they choose</li>
+            </ul>
+            
+        
+            <div class="row">
+                <div class="large-6 columns">
+                      <!--<h1 tal:content="python: 'from ' + context.getId()"></h1>-->
+                      <tal:block tal:define="brains view/contents" tal:condition="brains">
+                            <table class="plain" >
+                                  <tbody tal:repeat="brain brains">
+                          
+                                    <td colspan="2" tal:condition="python: brain._unrestrictedGetObject().domestic_workers == True">Employer of Domestic Workers</td>
+                                  <tr>
+                                    <td>First Name:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().first_name"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Last Name:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().last_name"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Middle Initial:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().middle_initial"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>City:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().city"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Country:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().country"></td>
+                                  </tr>
+                                  <!-- <tr>
+                                    <td>Email:</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().email1"></td>
+                                  </tr> -->
+                                  <tr>
+                                    <td colspan="2">Pledges:</td>
+                                  </tr>
+                                  <tr tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
+                                    <td colspan="2" tal:content="python: view.pledge_detail(pledge)"></td>
+                                  </tr>
+                          
+                                </tbody>
+                            </table>
+                  
+                  
+                      </tal:block>
+                </div>
+                
+                <div class="large-6 columns">
+                      <ul class="large-block-grid-2">
+                            <li>
+                              <a href="#" data-reveal-id="fbModal">
+                                <img src="/++theme++idwfed.theme/pd_img/share_fb.png" />
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" data-reveal-id="tweetModal">
+                                <img src="/++theme++idwfed.theme/pd_img/share_tw.png" />
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#" data-reveal-id="emailModal">
+                                <img src="/++theme++idwfed.theme/pd_img/share_email.png" />
+                              </a>
+                            </li>
+                      </ul>
+                </div>
+            </div>
 
   <!--   <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description','email2','captcha')">
