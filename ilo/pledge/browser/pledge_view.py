@@ -32,3 +32,11 @@ class Index(dexterity.DisplayForm):
             obj = brain._unrestrictedGetObject()
             result = obj.pledge_detail
         return result
+    
+    def pledge_logo(self):
+        context = self.context
+        path = '/'.join(context.getPhysicalPath())
+        if len(context.pledges):
+            return path+'/++theme++idwfed.theme/pd_img/pd_img_'+str(len(context.pledges))+'.png'
+        return ''
+    
