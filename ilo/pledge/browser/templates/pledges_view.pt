@@ -17,24 +17,26 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+      <ul class="square">
     <tal:block tal:define="brains view/contents" tal:condition="brains">
       <li tal:repeat="brain brains">
          <a tal:attributes="href python: brain.getPath()"> 
           <strong>
-            <element tal:content="python: brain._unrestrictedGetObject().first_name + ' '"></element>
-            <element tal:content="python: brain._unrestrictedGetObject().middle_initial + '. '"></element>
-            <element tal:content="python: brain._unrestrictedGetObject().last_name + ', '"></element>
-            <element tal:condition="python: brain._unrestrictedGetObject().city" tal:content="python: brain._unrestrictedGetObject().city + ', '"></element>
-            <element tal:content="python: brain._unrestrictedGetObject().country"></element>
+            <span tal:content="python: brain._unrestrictedGetObject().first_name + ' '">
+            <span tal:content="python: brain._unrestrictedGetObject().middle_initial + '. '">
+            <span tal:content="python: brain._unrestrictedGetObject().last_name + ', '">
+            <span tal:condition="python: brain._unrestrictedGetObject().city" tal:content="python: brain._unrestrictedGetObject().city + ', '">
+            <span tal:content="python: brain._unrestrictedGetObject().country">
           </strong>
         </a>
-        <em>
-        <element tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
-          <br/><tal:element tal:content="python:view.pledge_detail(pledge)"></tal:element>
-        </element>
-        </em>
+         <p>
+            <em tal:repeat="pledge python: brain._unrestrictedGetObject().pledges">
+              <tal:element tal:content="python:view.pledge_detail(pledge)"></tal:element>
+            </em>
+        </p>
       </li>
     </tal:block>
+      </ul>
 
 
   </metal:content-core>
