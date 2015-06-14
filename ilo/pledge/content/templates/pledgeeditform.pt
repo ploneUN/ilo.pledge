@@ -8,7 +8,7 @@
 
 <metal:styleslot fill-slot='style_slot'>
       <style type="text/css" media="all">
-         #portal-column-two, #sidebar-right{display:none;}
+         #portal-column-two, #sidebar-right, .discreet{display:none;}
          #portal-column-content{width: 75%}
       </style>  
 </metal:styleslot>
