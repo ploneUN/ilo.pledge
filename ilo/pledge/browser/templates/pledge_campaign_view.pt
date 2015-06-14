@@ -31,8 +31,8 @@
       </div>-->
       <!--<p class="text-center">There are 53 million domestic workers worldwide – working as cleaners, housekeepers, and as carers for children and the elderly.</p>
       <p class="text-center">The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
-      <p class="text-center">Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>
-      <center>-->
+      <p class="text-center">Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>-->
+      <center>
       <div tal:content="structure context/pledge_campain_detail"></div>
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
 <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a></center>
