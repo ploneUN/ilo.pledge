@@ -87,6 +87,13 @@ class IPledge(form.Schema, IImageScaleTraversable):
     """
     Pledge Form
     """
+    form.widget(pledges=CheckBoxFieldWidget)
+    pledges = schema.List(
+        title=u'Pledges',
+        required=False,
+        value_type=schema.Choice(source=pledge_details())
+    )
+    
     first_name = schema.TextLine(
            title=_(u"First Name"),
            required=True,
@@ -129,12 +136,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
            constraint=validateaddress
         )
 
-    form.widget(pledges=CheckBoxFieldWidget)
-    pledges = schema.List(
-        title=u'Pledges',
-        required=False,
-        value_type=schema.Choice(source=pledge_details())
-    )
+    
     # form.widget(stickers=CheckBoxFieldWidget)
     # stickers = schema.List(
     #     title=u'Stickers',
