@@ -27,6 +27,7 @@ from collective import dexteritytextindexer
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
 from plone.i18n.normalizer import idnormalizer
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 
 from ilo.pledge import MessageFactory as _
 
@@ -65,6 +66,11 @@ def _createObject(context, event):
         new_id = new_id +'-'+str(len(test))
     parent.manage_renameObject(id, new_id )
     context.setTitle('Pledge Detail '+ str(len(object_Ids)))
+
+
+    #exclude from navigation code
+    behavior = IExcludeFromNavigation(context)
+    behavior.exclude_from_nav = True
 
     context.reindexObject()
     return
