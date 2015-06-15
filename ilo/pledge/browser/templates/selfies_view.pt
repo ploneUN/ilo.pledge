@@ -19,7 +19,7 @@
   <metal:content-core define-macro="content-core">
 
 
-    <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center>
+    <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center><br>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.contents() " tal:repeat="brain brains" tal:condition="brains">
                   <li>
