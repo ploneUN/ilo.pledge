@@ -46,6 +46,11 @@ class ISelfie(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
+    selfie_message = schema.Text(
+           title=_(u"Message"),
+           required=True,
+        )
+
     pass
 
 alsoProvides(ISelfie, IFormFieldProvider)
