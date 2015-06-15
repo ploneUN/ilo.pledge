@@ -139,7 +139,8 @@
                               </a>
                             </li>
                             <li>
-                              <a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">
+                              <!--<a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">-->
+                              <a href="./networking">
                                 <img src="/++theme++idwfed.theme/pd_img/c189_network.png" />
                               </a>
                             </li>
