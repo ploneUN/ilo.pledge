@@ -91,11 +91,45 @@ def _createObject(context, event):
     context.reindexObject()
     return
 
+#@grok.subscribe(ISelfie, IAfterTransitionEvent)
+#def _changeState(context, event):
+#    wf = getToolByName(context, 'portal_workflow')
+#    curr_state = wf.getInfoFor(context, 'review_state')
+#    if curr_state == 'pending':
+#        context.plone_utils.addPortalMessage(_(u"Your submission will be accepted after review."), "success")
+#    return
+
+
 @grok.subscribe(ISelfie, IAfterTransitionEvent)
 def _changeState(context, event):
     wf = getToolByName(context, 'portal_workflow')
     curr_state = wf.getInfoFor(context, 'review_state')
+    mailhost = getToolByName(context, 'MailHost')
     if curr_state == 'pending':
         context.plone_utils.addPortalMessage(_(u"Your submission will be accepted after review."), "success")
-    return
+        if context.selfie_owner:
+            ## Email to afterfive
+            mSubj = "Signature Received"
+            mFrom = "afterfive2015@gmail.com"
+            mTo = "afterfive2015@gmail.com"
+            mBody = "A site visitor has just submitted a selfie. Below are the selfie.\n"
+            mBody += "Name: "+context.selfie_owner+"\n"
+            mBody += "Message: "+context.selfie_message+"\n"
+            mBody += "\n"
+            mBody += "To review the above signature, visit:\n\n"
+            mBody += context.absolute_url()+"\n\n"
+            mBody += "To approve the post, click on the link below:\n\n"
+            mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish"
+            mBody += "\n\n"
+            
+            mBody += "-------------------------\n"
+            mBody += "IDWF Portal"
+            
 
+            try:
+                mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
+                
+              
+            except ValueError, e:
+                context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+                return None
