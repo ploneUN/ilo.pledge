@@ -14,5 +14,8 @@
   <type type_id="ilo.pledge.pledge">
    <bound-workflow workflow_id="ilopledge.pledge"/>
   </type>
+  <type type_id="ilo.pledge.selfie">
+   <bound-workflow workflow_id="ilopledge.selfie"/>
+  </type>
  </bindings>
 </object>
