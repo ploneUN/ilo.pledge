@@ -77,7 +77,7 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
-      <h1 class="documentFirstHeading" tal:content="string:'Make the Commitment' | nothing" />
+      <h1 class="documentFirstHeading" tal:content="string:Make the Commitment" />
     <div id="content-core">
             <div id="pledge-logo" class="right">
                   <!-- loaded image here -->
