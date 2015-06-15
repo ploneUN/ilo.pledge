@@ -109,7 +109,7 @@ def _changeState(context, event):
         context.plone_utils.addPortalMessage(_(u"Your submission will be accepted after review."), "success")
         if context.selfie_owner:
             ## Email to afterfive
-            mSubj = "Signature Received"
+            mSubj = "Selfie Submission Received"
             mFrom = "afterfive2015@gmail.com"
             mTo = "afterfive2015@gmail.com"
             mBody = "A site visitor has just submitted a selfie. Below are the selfie.\n"
