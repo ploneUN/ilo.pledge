@@ -51,14 +51,17 @@
     <p>Insert map count here</p>
     <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
-            <tal:element tal:define="brains python: view.selfies() " tal:repeat="brain brains" tal:condition="brains">
+            <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
                   <li>
                        <img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
                         <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p> 
                   </li>
             </tal:element>
+            
       </ul>
+      <a tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'">View All Seflies</a>
     </tal:block>
+<!-- <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a> -->
 <!--
     <thead>
     <th>Name</th>

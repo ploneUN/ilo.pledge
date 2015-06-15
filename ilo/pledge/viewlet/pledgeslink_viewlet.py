@@ -11,5 +11,12 @@ class pledgeslink_viewlet(grok.Viewlet):
     grok.require('zope2.View')
     grok.template('pledgeslink_viewlet')
     grok.viewletmanager(IAboveContent)
+    
+    def hideAllPledgesLink(self, ):
+        url = self.request.URL
+        if '++add++' in url:
+            return False
+        return True
+    
 
 

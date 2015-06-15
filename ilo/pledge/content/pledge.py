@@ -42,6 +42,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransitionEvent
+from z3c.form import validator
 # Interface class; used to define content-type schema.
 
 class InvalidEmailAddress(ValidationError):
@@ -104,26 +105,26 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-    middle_initial = schema.TextLine(
-           title=_(u"Middle Initial"),
-           required=True,
-        )
+#    middle_initial = schema.TextLine(
+#           title=_(u"Middle Initial"),
+#           required=True,
+#        )
 
-    city = schema.TextLine(
-            title=_(u"City"),
-            required=False,
-         )
+#    city = schema.TextLine(
+#            title=_(u"City"),
+#            required=False,
+#         )
 
     country = schema.TextLine(
            title=_(u"Country"),
            required=False,
         )
 
-    domestic_workers = schema.Bool(
-        title=u'Employer of domestic worker/s',
-        required=False,
-        default=False
-    )
+#    domestic_workers = schema.Bool(
+#        title=u'Employer of domestic worker/s',
+#        required=False,
+#        default=False
+#    )
 
 #this should be the id of the pledge
     email1 = schema.TextLine(
@@ -164,6 +165,26 @@ class IPledge(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IPledge, IFormFieldProvider)
+
+class CheckDuplicateEmail(validator.SimpleFieldValidator):
+    def validate(self, value):
+        super(CheckDuplicateEmail, self).validate(value)
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        if context.portal_type == 'ilo.pledge.pledgecampaign':
+            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+            emails = [brain._unrestrictedGetObject().email1 for brain in brains]
+            if value in emails:
+                raise Invalid(_("Email already exists."))
+        elif context.portal_type == 'ilo.pledge.pledge':
+            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+            emails = [brain._unrestrictedGetObject().email1 for brain in brains if brain.UID != self.context.UID()]
+            if value in emails:
+                raise Invalid(_("Email already exists."))
+            
+
+validator.WidgetValidatorDiscriminators(CheckDuplicateEmail, field=IPledge['email1'])
+grok.global_adapter(CheckDuplicateEmail)
 
 
 @grok.subscribe(IPledge, IObjectAddedEvent)
@@ -240,8 +261,8 @@ def _changeState(context, event):
             mFrom = "afterfive2015@gmail.com"
             mTo = "afterfive2015@gmail.com"
             mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new signatory.\n"
-            mBody += "Name: "+context.first_name+" "+context.middle_initial+" "+context.last_name+"\n"
-            mBody += "City: "+context.city+"\n"
+            mBody += "Name: "+context.first_name+" "+context.last_name+"\n"
+            #mBody += "City: "+context.city+"\n"
             mBody += "Country: "+context.country+"\n"
             mBody += "Email: "+context.email1+"\n"
             mBody += "\n"

@@ -2,5 +2,16 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
-
+<portlet
+            addview="allpledgesportlet.portlet"
+            title="My Fair Home"
+            description=""
+    />
+<portlet
+            addview="addselfieportlet.portlet"
+            title="Add Selfie"
+            description=""
+    />
 </portlets>
+
+

@@ -37,6 +37,7 @@ setup(name='ilo.pledge',
           'quintagroup.z3cform.captcha',
           'collective.easytemplate',
           'collective.setuphelpers',
+          #'Products.PrintingMailHost',
           # -*- Extra requirements: -*-
       ],
       extras_require={

@@ -4,6 +4,7 @@
     name="title">Contains workflow definitions for your portal</property>
  <object name="ilopledge.pledgecampaign" meta_type="Workflow"/>
  <object name="ilopledge.pledge" meta_type="Workflow"/>
+ <object name="ilopledge.selfie" meta_type="Workflow"/>
  <bindings>
   <default>
    <bound-workflow workflow_id="simple_publication_workflow"/>
@@ -13,6 +14,9 @@
   </type>
   <type type_id="ilo.pledge.pledge">
    <bound-workflow workflow_id="ilopledge.pledge"/>
+  </type>
+  <type type_id="ilo.pledge.selfie">
+   <bound-workflow workflow_id="ilopledge.selfie"/>
   </type>
  </bindings>
 </object>

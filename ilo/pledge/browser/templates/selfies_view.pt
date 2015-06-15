@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ilo.pledge">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+    
+    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
+    if needed.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+    <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center><br>
+      <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+            <tal:element tal:define="brains python: view.contents() " tal:repeat="brain brains" tal:condition="brains">
+                  <li>
+                       <img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p> 
+                  </li>
+            </tal:element>
+      </ul>
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
