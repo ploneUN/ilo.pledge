@@ -19,7 +19,7 @@ class selfies_view(dexterity.DisplayForm):
     	context = self.context
     	catalog = self.catalog
     	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.selfie',review_state='published')
+    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.selfie',review_state='published', sort_on='Date',sort_order='reverse')
     	return brains
 
 
