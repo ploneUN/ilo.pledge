@@ -48,7 +48,7 @@
     
     <p><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></p>
     <center><h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
-    <p>Insert map count here</p>
+    <!-- <p>Insert map count here</p> -->
     <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
