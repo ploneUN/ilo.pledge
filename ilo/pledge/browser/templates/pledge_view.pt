@@ -21,6 +21,25 @@
     
 </metal:styleslot>
 
+<metal:javascript_head fill-slot="javascript_head_slot">
+  <script type="text/javascript">
+      $(document).ready(function(){
+            $('form#social_email').submit(function(){
+                  if ($("input[name='to_email']").val() == '') {
+                        alert("Please enter recipient's email address.");
+                        $("input[name='to_email']").focus();
+                        return false;
+                  }
+                  if ($("input[name='sender_email']").val() == '') {
+                        alert("Please enter sender's email address.");
+                        $("input[name='sender_email']").focus();
+                        return false;
+                  }
+            })
+      })
+  </script>
+</metal:javascript_head>
+
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
     content unless activated by creation of a view class with a matching name.
@@ -143,7 +162,7 @@
     </fieldset> -->
 
       <div id="emailModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-          <form name='social_email' type='POST'>
+          <form name='social_email' type='POST' id="social_email">
             <label>To:</label>
             <input type='text' name="to_email" placeholder="Enter e-mail address here"/>
             <label>Sender's Email Address:</label>
