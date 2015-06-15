@@ -2,7 +2,7 @@
 <p tal:content="python: view.contents().selfie_title"></p>
 <p tal:content="python: view.contents().selfie_body"></p>
 <div class="side_viewlet state-sign" tal:condition="python: view.contents().selfie_description">
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.pledge.selfie'" tal:content="python: view.contents().selfie_description">View all pledges</a>
+    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.pledge.selfie'" tal:content="python: view.contents().selfie_description">View all commitments</a>
 </div>
 </div>
 
