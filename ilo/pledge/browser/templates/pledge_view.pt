@@ -175,6 +175,7 @@
             <input type='submit' value='Email' />
           </form>
           <span tal:define="dummy view/sendEmail"/>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
       </div>
 
   </metal:content-core>
