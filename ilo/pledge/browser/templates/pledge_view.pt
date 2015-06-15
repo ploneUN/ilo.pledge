@@ -75,6 +75,7 @@
                                     <td tal:content="python: brain._unrestrictedGetObject().city"></td>
                                   </tr>
                                   <tr>-->
+                                  <tr>
                                     <td>Country:</td>
                                     <td tal:content="python: brain._unrestrictedGetObject().country"></td>
                                   </tr>
