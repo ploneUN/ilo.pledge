@@ -104,26 +104,26 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-    middle_initial = schema.TextLine(
-           title=_(u"Middle Initial"),
-           required=True,
-        )
+#    middle_initial = schema.TextLine(
+#           title=_(u"Middle Initial"),
+#           required=True,
+#        )
 
-    city = schema.TextLine(
-            title=_(u"City"),
-            required=False,
-         )
+#    city = schema.TextLine(
+#            title=_(u"City"),
+#            required=False,
+#         )
 
     country = schema.TextLine(
            title=_(u"Country"),
            required=False,
         )
 
-    domestic_workers = schema.Bool(
-        title=u'Employer of domestic worker/s',
-        required=False,
-        default=False
-    )
+#    domestic_workers = schema.Bool(
+#        title=u'Employer of domestic worker/s',
+#        required=False,
+#        default=False
+#    )
 
 #this should be the id of the pledge
     email1 = schema.TextLine(
