@@ -129,7 +129,8 @@
                               </a>
                             </li>
                             <li>
-                              <a href="#" data-reveal-id="tweetModal">
+                              <!--<a href="#" data-reveal-id="tweetModal">-->
+                              <a tal:attributes="href string:https://twitter.com/intent/tweet?url=${context/absolute_url}&text=I just made a commitment to protect the rights of domestic workers" class="twitter-share-button" data-size="large" data-dnt="true" id="tweet-button" target="_blank">
                                 <img src="/++theme++idwfed.theme/pd_img/share_tw.png" />
                               </a>
                             </li>
