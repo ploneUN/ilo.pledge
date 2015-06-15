@@ -15,20 +15,39 @@ from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 class IContentNavigation(IPortletDataProvider):
     
-    item_title = schema.Text(
-            title = u"My Fair Home Links",
-            description=u"e.g. Add Selfie, Pledges Link"
+    pledges_description = schema.TextLine(
+            title = u"All Pledges Label",
+            required=False,
         )
+
+    pledges_link = schema.TextLine(
+            title = u"All Pledges Link",
+            required=False,
+        )
+
+    selfie_description = schema.TextLine(
+            title = u"Selfie Description",
+            required=False,
+        )
+
+    selfie_link= schema.TextLine(
+            title = u"Selfie Link",
+            required=False,
+        )
+
 class Assignment(base.Assignment):
     implements(IContentNavigation)
     
     
-    def __init__(self,item_title=None):
-        self.item_title = item_title
+    def __init__(self,pledges_description=None, pledges_link=None, selfie_description=None, selfie_link= None ):
+        self.pledges_description = pledges_description
+        self.pledges_link = pledges_link
+        self.selfie_description = selfie_description
+        self.selfie_link = selfie_link
        
     @property
     def title(self):
-        return "Footer Item: "+self.item_title
+        return "Pledges Item: "
     
 
 class Renderer(base.Renderer):
@@ -46,7 +65,7 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
-    form_fields['item_title'].custom_widget = WYSIWYGWidget
+    # form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Add My Fair Home Portlet"
     description = ''
     
@@ -54,10 +73,9 @@ class AddForm(base.AddForm):
         assignment = Assignment()
         form.applyChanges(assignment, self.form_fields, data)
         return assignment
-    
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IContentNavigation)
-    form_fields['item_title'].custom_widget = WYSIWYGWidget
+    # form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Edit My Fair Home Portlet"
     description = ''
