@@ -14,6 +14,17 @@
       <style type="text/css" media="all">
      .discreet{display:none;}
     .horizontal {padding-bottom: 23px;}
+    #pledge-logo{
+      width: 200px;
+      height: 200px;
+      margin: 0 0 20px 20px;
+      }
+    #pledge-logo img{
+      border-radius: 10px;
+    }
+    .pledge-form .field{
+      clear: none;
+    }
       </style>  
 </metal:styleslot>
 
@@ -68,11 +79,14 @@
     <tal:main-macro metal:define-macro="main">
       <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
     <div id="content-core">
-            <div id='pledge-logo'>
+            <div id="pledge-logo" class="right">
                   <!-- loaded image here -->
             </div>
-            <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
-            <span id="current_url" tal:content="context/absolute_url" style='display: none'></span>
+            <div class="pledge-form">
+                  <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+                  <span id="current_url" tal:content="context/absolute_url" style='display: none' />
+            </div>
+            
     </div>
       <!-- Custom section goes here below the form -->
 
