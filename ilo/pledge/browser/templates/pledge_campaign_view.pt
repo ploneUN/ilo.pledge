@@ -11,6 +11,9 @@
                   div#edit-bar{
                       display: none;
                   }
+                  #portal-column-content a.button {
+                      color: white;
+                  }  
             </style>
       </metal:styleslot>
 
