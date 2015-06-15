@@ -26,6 +26,8 @@ from ilo.pledge import MessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from plone.i18n.normalizer import idnormalizer
 
 
 # Interface class; used to define content-type schema.
@@ -74,15 +76,19 @@ def _createObject(context, event):
         object_Ids.append(brain.id)
     
 
-    full_name = str(idnormalizer.normalize(context.selfie_owner))
+    full_name = str(idnormalizer.normalize(context.full_name))
     test = ''
     num = 0
     if full_name in object_Ids:
         test = filter(lambda name: full_name in name, object_Ids)
         full_name = full_name +'-' + str(len(test))
 
-    parent.manage_renameObject(id, selfie_owner )
+
+    parent.manage_renameObject(id, full_name )
     context.setTitle(context.full_name)
+
+    behavior = IExcludeFromNavigation(context)
+    behavior.exclude_from_nav = True
 
     context.reindexObject()
     return

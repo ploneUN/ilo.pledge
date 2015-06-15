@@ -22,6 +22,8 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 
+
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from ilo.pledge import MessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
@@ -85,8 +87,8 @@ def _createObject(context, event):
     context.setTitle(context.selfie_owner)
 
     #exclude from navigation code
-    # behavior = IExcludeFromNavigation(context)
-    # behavior.exclude_from_nav = True
+    behavior = IExcludeFromNavigation(context)
+    behavior.exclude_from_nav = True
 
     context.reindexObject()
     return
