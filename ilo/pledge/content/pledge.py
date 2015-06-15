@@ -42,6 +42,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransitionEvent
+from z3c.form import validator
 # Interface class; used to define content-type schema.
 
 class InvalidEmailAddress(ValidationError):
@@ -164,6 +165,26 @@ class IPledge(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IPledge, IFormFieldProvider)
+
+class CheckDuplicateEmail(validator.SimpleFieldValidator):
+    def validate(self, value):
+        super(CheckDuplicateEmail, self).validate(value)
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        if context.portal_type == 'ilo.pledge.pledgecampaign':
+            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+            emails = [brain._unrestrictedGetObject().email1 for brain in brains]
+            if value in emails:
+                raise Invalid(_("Email already exists."))
+        elif context.portal_type == 'ilo.pledge.pledge':
+            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+            emails = [brain._unrestrictedGetObject().email1 for brain in brains if brain.UID != self.context.UID()]
+            if value in emails:
+                raise Invalid(_("Email already exists."))
+            
+
+validator.WidgetValidatorDiscriminators(CheckDuplicateEmail, field=IPledge['email1'])
+grok.global_adapter(CheckDuplicateEmail)
 
 
 @grok.subscribe(IPledge, IObjectAddedEvent)
