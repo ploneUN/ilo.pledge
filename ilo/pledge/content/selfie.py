@@ -28,6 +28,7 @@ from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
 
 from plone.i18n.normalizer import idnormalizer
+from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransitionEvent
 
 
 # Interface class; used to define content-type schema.
@@ -83,4 +84,12 @@ def _createObject(context, event):
     # behavior.exclude_from_nav = True
 
     context.reindexObject()
+    return
+
+@grok.subscribe(ISelfie, IAfterTransitionEvent)
+def _changeState(context, event):
+    wf = getToolByName(context, 'portal_workflow')
+    curr_state = wf.getInfoFor(context, 'review_state')
+    if curr_state == 'pending':
+        context.plone_utils.addPortalMessage(_(u"Your submission will be accepted after review."), "success")
     return
