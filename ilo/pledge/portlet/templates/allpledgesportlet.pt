@@ -1,0 +1,7 @@
+<div class='footerportlet'>
+   
+    <tal:block >
+        <span tal:content="structure python: view.contents().item_title"></span>
+    </tal:block>
+</div>
+

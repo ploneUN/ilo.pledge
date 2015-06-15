@@ -6,4 +6,13 @@
     <include package="plone.app.portlets" file="permissions.zcml"/>
     <!-- -*- extra stuff goes here -*- -->
 
+ <plone:portlet
+                name="allpledgesportlet.portlet"
+                interface=".allpledgesportlet.IContentNavigation"
+                assignment=".allpledgesportlet.Assignment"
+                renderer=".allpledgesportlet.Renderer"
+                addview=".allpledgesportlet.AddForm"
+                editview=".allpledgesportlet.EditForm"
+                />
 </configure>
+
