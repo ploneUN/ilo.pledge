@@ -142,6 +142,16 @@
         </div>
     </fieldset> -->
 
+      <div id="emailModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+          <form name='social_email' type='POST'>
+            <label>To:</label>
+            <input type='text' name="to_email" placeholder="Enter e-mail address here"/>
+            <label>Sender's Email Address:</label>
+            <input type='text' name="sender_email"/>
+            <input type='submit' value='Email' />
+          </form>
+          <span tal:define="dummy view/sendEmail"/>
+      </div>
 
   </metal:content-core>
 </metal:main>
