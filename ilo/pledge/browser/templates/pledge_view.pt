@@ -14,11 +14,16 @@
 
   <metal:styleslot fill-slot='style_slot'>
       <style type="text/css" media="all">
-         .documentFirstHeading {display:None}
+            .documentFirstHeading {display:None}
+            .pledge-logo{
+                  width: 300px;
+                  height: 300px;
+                  margin: 0 auto 20px;
+            }
+            .pledge-logo img{
+                  border-radius: 10px;
+            }
       </style>
-
-
-    
 </metal:styleslot>
 
 <metal:javascript_head fill-slot="javascript_head_slot">
@@ -52,9 +57,9 @@
   <metal:content-core define-macro="content-core">
         
 
-    <div tal:condition="view/pledge_logo">
-      <center><img tal:attributes="src view/pledge_logo"/></center>
-    </div>
+      <div class="pledge-logo text-center" tal:condition="view/pledge_logo">
+            <img tal:attributes="src view/pledge_logo"/>
+      </div>
 
     <!--<a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">Networking</a>-->
     
