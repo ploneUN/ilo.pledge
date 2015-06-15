@@ -168,13 +168,16 @@
 
       <div id="emailModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
           <form name='social_email' type='POST' id="social_email">
-            <label>To:</label>
-            <input type='text' name="to_email" placeholder="Enter e-mail address here"/>
+            <label>Enter a friend’s email address:</label>
+            <input type='text' name="to_email" />
             <label>Sender's Email Address:</label>
             <input type='text' name="sender_email"/>
+            <label>Enter a message:</label>
+            <input type='text' name="message"/>
             <input type='submit' value='Email' />
           </form>
           <span tal:define="dummy view/sendEmail"/>
+          <a class="close-reveal-modal" aria-label="Close">&#215;</a>
       </div>
 
   </metal:content-core>

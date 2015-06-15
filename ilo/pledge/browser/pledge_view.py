@@ -62,6 +62,7 @@ class Index(dexterity.DisplayForm):
                 
                 to_email = form['to_email']
                 sender_email = form['sender_email']
+                def_message = form['message']
                 if not validateaddress(to_email):
                     context.plone_utils.addPortalMessage(u"Please enter valid email address.", 'info')
                     request.RESPONSE.redirect('/'.join(context.getPhysicalPath()))
@@ -83,6 +84,9 @@ class Index(dexterity.DisplayForm):
                     html += """<img src="""+self.pledge_logo()+""" title="" alt=""/>"""
                     html += """</a>"""
                     html += """<br/>"""
+                    if def_message:
+                        html += """<p>Message:<br/>"""
+                        html += def_message+"""</p>"""
                     html += """Pledge Item:"""
                     if context.pledges:
                         html += """<ul>"""
