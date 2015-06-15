@@ -5,8 +5,16 @@ from Products.CMFCore.utils import getToolByName
 from ilo.pledge.content.pledge_detail import IPledgeDetail
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from Products.CMFDefault.utils import checkEmailAddress
 
 grok.templatedir('templates')
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+        return True
+    except Exception:
+        return False
 
 class Index(dexterity.DisplayForm):
     grok.context(IPledge)
@@ -51,8 +59,17 @@ class Index(dexterity.DisplayForm):
             if request.form:
                 form = request.form
                 email1 = context.email1
+                
                 to_email = form['to_email']
                 sender_email = form['sender_email']
+                if not validateaddress(to_email):
+                    context.plone_utils.addPortalMessage(u"Please enter valid email address.", 'info')
+                    request.RESPONSE.redirect('/'.join(context.getPhysicalPath()))
+                    return
+                if not validateaddress(sender_email):
+                    context.plone_utils.addPortalMessage(u"Please enter valid sender's email address.", 'info')
+                    request.RESPONSE.redirect('/'.join(context.getPhysicalPath()))
+                    return
                 if email1 != sender_email:
                     context.plone_utils.addPortalMessage(u"Please enter valid sender's email address.", 'info')
                     request.RESPONSE.redirect('/'.join(context.getPhysicalPath()))
