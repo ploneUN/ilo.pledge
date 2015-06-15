@@ -20,34 +20,34 @@ class IContentNavigation(IPortletDataProvider):
             required=False,
         )
 
-    pledges_link = schema.TextLine(
-            title = u"All Pledges Link",
-            required=False,
-        )
+    # pledges_link = schema.TextLine(
+    #         title = u"All Pledges Link",
+    #         required=False,
+    #     )
 
     selfie_description = schema.TextLine(
-            title = u"Selfie Description",
+            title = u"All Selfie Label",
             required=False,
         )
 
-    selfie_link= schema.TextLine(
-            title = u"Selfie Link",
-            required=False,
-        )
+    # selfie_link= schema.TextLine(
+    #         title = u"Selfie Link",
+    #         required=False,
+    #     )
 
 class Assignment(base.Assignment):
     implements(IContentNavigation)
     
     
-    def __init__(self,pledges_description=None, pledges_link=None, selfie_description=None, selfie_link= None ):
+    def __init__(self,pledges_description=None, selfie_description=None):
         self.pledges_description = pledges_description
-        self.pledges_link = pledges_link
+        # self.pledges_link = pledges_link
         self.selfie_description = selfie_description
-        self.selfie_link = selfie_link
+        # self.selfie_link = selfie_link
        
     @property
     def title(self):
-        return "Pledges Item: "
+        return "My Fair Home"
     
 
 class Renderer(base.Renderer):
