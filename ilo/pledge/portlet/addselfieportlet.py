@@ -15,6 +15,15 @@ from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 class IContentNavigation(IPortletDataProvider):
     
+    selfie_title = schema.TextLine(
+            title = u"Portlet Title",
+            required=False,
+        )
+
+    selfie_body = schema.Text(
+            title = u"Portlet Body",
+            required=False,
+        )
 
     selfie_description = schema.TextLine(
             title = u"Add Selfie Label",
@@ -26,9 +35,10 @@ class Assignment(base.Assignment):
     implements(IContentNavigation)
     
     
-    def __init__(self, selfie_description=None):
+    def __init__(self, selfie_description=None, selfie_title=None, selfie_body= None):
         self.selfie_description = selfie_description
-      
+        self.selfie_title = selfie_title
+        self.selfie_body = selfie_body
        
     @property
     def title(self):
