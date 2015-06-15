@@ -4,6 +4,7 @@
     name="title">Contains workflow definitions for your portal</property>
  <object name="ilopledge.pledgecampaign" meta_type="Workflow"/>
  <object name="ilopledge.pledge" meta_type="Workflow"/>
+ <object name="ilopledge.selfie" meta_type="Workflow"/>
  <bindings>
   <default>
    <bound-workflow workflow_id="simple_publication_workflow"/>
