@@ -62,7 +62,12 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
     )
     
     i_pledge = schema.Text(
-        title=_(u"I Pledge"),
+        title=_(u"I Pledge to Uphold... (translation)"),
+        required=False,
+    )
+
+    selfie_button_label = schema.TextLine(
+        title=_(u"Selfie Button Label"),
         required=False,
     )
 

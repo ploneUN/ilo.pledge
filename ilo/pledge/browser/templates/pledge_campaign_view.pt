@@ -57,8 +57,12 @@
                         <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p> 
                   </li>
             </tal:element>
+    
+            
       </ul>
     </tal:block>
+   <!--  <a tal:attributes="href python: context.absolute_url() +'/++add++ilo.pledge.selfie'">Add Seflie</a> -->
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
 <!--
     <thead>
     <th>Name</th>

@@ -47,6 +47,11 @@ class ISelfie(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
+    selfie_message = schema.Text(
+           title=_(u"Message"),
+           required=True,
+        )
+
     pass
 
 alsoProvides(ISelfie, IFormFieldProvider)
@@ -93,3 +98,4 @@ def _changeState(context, event):
     if curr_state == 'pending':
         context.plone_utils.addPortalMessage(_(u"Your submission will be accepted after review."), "success")
     return
+

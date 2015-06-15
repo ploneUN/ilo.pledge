@@ -23,9 +23,9 @@
          <a tal:attributes="href python: brain.getPath()"> 
           <strong>
             <span tal:content="python: brain._unrestrictedGetObject().first_name + ' '"/>
-            <span tal:content="python: brain._unrestrictedGetObject().middle_initial + '. '"/>
+            <!--<span tal:content="python: brain._unrestrictedGetObject().middle_initial + '. '"/>-->
             <span tal:content="python: brain._unrestrictedGetObject().last_name + ', '"/>
-            <span tal:condition="python: brain._unrestrictedGetObject().city" tal:content="python: brain._unrestrictedGetObject().city + ', '"/>
+            <!--<span tal:condition="python: brain._unrestrictedGetObject().city" tal:content="python: brain._unrestrictedGetObject().city + ', '"/>-->
             <span tal:content="python: brain._unrestrictedGetObject().country"/>
           </strong>
         </a>
