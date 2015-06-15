@@ -9,7 +9,12 @@
     <head>
         <metal:block fill-slot="column_two_slot" />
     </head>
-
+<metal:styleslot fill-slot='style_slot'>
+      <style type="text/css" media="all">
+     .discreet{display:none;}
+      .horizontal {line-height: 51px;}
+      </style>  
+</metal:styleslot>
 <metal:javascript_head fill-slot="javascript_head_slot">
   <script type="text/javascript">
     $(document).ready(function(){
