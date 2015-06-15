@@ -14,6 +14,11 @@ from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 #grok.templatedir('templates')
 
 class IContentNavigation(IPortletDataProvider):
+
+    pledges_title = schema.TextLine(
+            title = u"Portlet Title",
+            required=False,
+        )
     
     pledges_description = schema.TextLine(
             title = u"All Pledges Label",
@@ -39,10 +44,11 @@ class Assignment(base.Assignment):
     implements(IContentNavigation)
     
     
-    def __init__(self,pledges_description=None, selfie_description=None):
+    def __init__(self,pledges_description=None, selfie_description=None, pledges_title=None):
         self.pledges_description = pledges_description
-        # self.pledges_link = pledges_link
+        self.pledges_title = pledges_title
         self.selfie_description = selfie_description
+        
         # self.selfie_link = selfie_link
        
     @property
