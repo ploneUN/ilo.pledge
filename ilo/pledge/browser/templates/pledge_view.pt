@@ -98,7 +98,7 @@
                 </div>
                 
                 <div class="large-6 columns">
-                      <ul class="large-block-grid-2">
+                      <ul class="large-block-grid-2 small-block-grid-3 medium-block-grid-4">
                             <li>
                               <a href="#" data-reveal-id="fbModal">
                                 <img src="/++theme++idwfed.theme/pd_img/share_fb.png" />
