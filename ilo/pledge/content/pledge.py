@@ -258,8 +258,8 @@ def _changeState(context, event):
         if context.email1:
             ## Email to afterfive
             mSubj = "Signature Received"
-            mFrom = "afterfive2015@gmail.com"
-            mTo = "afterfive2015@gmail.com"
+            mFrom = "info@idwfed.org"
+            mTo = "afterfive2015@gmail.com, info@idwfed.org"
             mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new signatory.\n"
             mBody += "Name: "+context.first_name+" "+context.last_name+"\n"
             #mBody += "City: "+context.city+"\n"
