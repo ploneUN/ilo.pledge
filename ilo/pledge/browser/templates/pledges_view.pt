@@ -18,6 +18,12 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       <ul class="square">
+        <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
+          <center><strong>No Commitments Yet.</strong><br />
+
+            <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">Take A Commitment</a></center>
+       
+        </tal:element>
     <tal:block tal:define="brains view/contents" tal:condition="brains">
       <li tal:repeat="brain brains">
          <a tal:attributes="href python: brain.getPath()"> 
