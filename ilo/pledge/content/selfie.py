@@ -112,8 +112,8 @@ def _changeState(context, event):
         if context.selfie_owner:
             ## Email to afterfive
             mSubj = "Selfie Submission Received"
-            mFrom = "afterfive2015@gmail.com"
-            mTo = "afterfive2015@gmail.com"
+            mFrom = "info@idwfed.org"
+            mTo = "afterfive2015@gmail.com, info@idwfed.org"
             mBody = "A site visitor has just submitted a selfie. Below are the selfie.\n"
             mBody += "Name: "+context.selfie_owner+"\n"
             mBody += "Message: "+context.selfie_message+"\n"
