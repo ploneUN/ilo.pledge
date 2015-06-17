@@ -27,12 +27,29 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-    <center>
+      
+      <div class="selfie-profile">
+            <div class="row">
+                <div class="large-4 columns">
+                    <div id="selfie-picture">
+                        <img width="150px" tal:attributes="src python: context.absolute_url()+'/@@images/selfie_image'"/>
+                    </div>
+                </div>
+                <div class="large-8 columns">
+                    <div id="selfie-overview">
+                        <h3 tal:content="context/selfie_owner"></h3>
+      <p tal:content="context/selfie_message"></p>
+                    </div>
+                </div>
+            </div>
+      </div>
+      
+    <!--<center>
       <a tal:attributes="href python: context.absolute_url()+'/@@images/selfie_image'">
       <img width="150px" tal:attributes="src python: context.absolute_url()+'/@@images/selfie_image'"/></a>
       <h3 tal:content="context/selfie_owner"></h3>
       <p tal:content="context/selfie_message"></p>
-    </center>
+    </center>-->
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
         <legend tal:content="group/label" />
