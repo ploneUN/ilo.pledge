@@ -273,7 +273,7 @@ def _changeState(context, event):
             mBody += "\n\n"
             
             mBody += "-------------------------\n"
-            mBody += "IDWF Portal"
+            mBody += "IDWFED Portal"
             
             
             mSubj_1 = "Pledge Received"
@@ -285,7 +285,7 @@ def _changeState(context, event):
             mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwfed.org\n\n"
             mBody_1 += "\n\n\n"
             mBody_1 += "-------------------------\n"
-            mBody_1 += "IDWF Portal\n"
+            mBody_1 += "IDWFED Portal\n"
             mBody_1 += "http://www.idwfed.org"
             
             try:
