@@ -281,12 +281,12 @@ def _changeState(context, event):
             mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your commitment details from the link below:\n\n"
             mBody_1 += context.absolute_url()+"\n\n"
             mBody_1 += "We will review your submission and once approved, your name will appear in the list of supporters.\n\n"
-            mBody_1 += "If you find that there are errors to your submission, please email afterfive2015@gmail.com\n\n"
-            mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwf.org\n\n"
+            mBody_1 += "If you find that there are errors to your submission, please email info@idwfed.org\n\n"
+            mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwfed.org\n\n"
             mBody_1 += "\n\n\n"
             mBody_1 += "-------------------------\n"
             mBody_1 += "IDWF Portal\n"
-            mBody_1 += "http://www.idwf.org"
+            mBody_1 += "http://www.idwfed.org"
             
             try:
                 mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
