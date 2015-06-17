@@ -118,7 +118,7 @@ def _changeState(context, event):
             mBody += "Name: "+context.selfie_owner+"\n"
             mBody += "Message: "+context.selfie_message+"\n"
             mBody += "\n"
-            mBody += "To review the above signature, visit:\n\n"
+            mBody += "To review the above selfie submission, visit:\n\n"
             mBody += context.absolute_url()+"\n\n"
             mBody += "To approve the post, click on the link below:\n\n"
             mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish"
