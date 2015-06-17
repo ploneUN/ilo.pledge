@@ -6,6 +6,9 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ilo.pledge">
 <body>
+    <head>
+        <metal:block fill-slot="column_two_slot" />
+    </head>
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
