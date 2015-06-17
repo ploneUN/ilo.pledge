@@ -16,17 +16,17 @@ from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 class IContentNavigation(IPortletDataProvider):
     
     selfie_title = schema.TextLine(
-            title = u"Portlet Title",
+            title = u"Seflie Portlet Title",
             required=False,
         )
 
     selfie_body = schema.Text(
-            title = u"Portlet Body",
+            title = u"Selfie Portlet Body",
             required=False,
         )
 
     selfie_description = schema.TextLine(
-            title = u"Add Selfie Label",
+            title = u"Add Selfie Button Label",
             required=False,
         )
 

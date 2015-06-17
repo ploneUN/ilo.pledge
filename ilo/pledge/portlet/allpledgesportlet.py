@@ -21,7 +21,7 @@ class IContentNavigation(IPortletDataProvider):
         )
     
     pledges_description = schema.TextLine(
-            title = u"All Pledges Label",
+            title = u"View All Pledges Label",
             required=False,
         )
 
@@ -31,7 +31,7 @@ class IContentNavigation(IPortletDataProvider):
     #     )
 
     selfie_description = schema.TextLine(
-            title = u"All Selfie Label",
+            title = u"View All Selfies Label",
             required=False,
         )
 
