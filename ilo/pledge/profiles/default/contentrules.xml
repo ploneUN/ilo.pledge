@@ -4,7 +4,28 @@
     description="Auto transition item to pending after creation"
     enabled="True" event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
     stop-after="False">
-  <conditions/>
+    <conditions>
+            <condition type="plone.conditions.PortalType">
+                <property name="check_types">
+                    <element>ilo.pledge.pledge</element>
+                </property>
+    </condition>
+  <actions>
+   <action type="plone.actions.Workflow">
+    <property name="transition">submit</property>
+   </action>
+  </actions>
+ </rule>
+ <rule name="rule-2" title="Auto Submit Selfie" cascading="False"
+    description="Auto transition item to pending after creation"
+    enabled="True" event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    stop-after="False">
+  <conditions>
+            <condition type="plone.conditions.PortalType">
+                <property name="check_types">
+                    <element>ilo.pledge.selfie</element>
+                </property>
+    </condition>
   <actions>
    <action type="plone.actions.Workflow">
     <property name="transition">submit</property>
