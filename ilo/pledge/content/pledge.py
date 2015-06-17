@@ -257,36 +257,36 @@ def _changeState(context, event):
         context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
         if context.email1:
             ## Email to afterfive
-            mSubj = "Signature Received"
+            mSubj = "Commitment Received"
             mFrom = "info@idwfed.org"
             mTo = "afterfive2015@gmail.com, info@idwfed.org"
-            mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new signatory.\n"
+            mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new commitment.\n"
             mBody += "Name: "+context.first_name+" "+context.last_name+"\n"
             #mBody += "City: "+context.city+"\n"
             mBody += "Country: "+context.country+"\n"
             mBody += "Email: "+context.email1+"\n"
             mBody += "\n"
-            mBody += "To review the above signature, visit:\n\n"
+            mBody += "To review the above commitment, visit:\n\n"
             mBody += context.absolute_url()+"\n\n"
             mBody += "To approve the post, click on the link below:\n\n"
             mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish"
             mBody += "\n\n"
             
             mBody += "-------------------------\n"
-            mBody += "IDWF Portal"
+            mBody += "IDWFED Portal"
             
             
             mSubj_1 = "Pledge Received"
             mTo_1 = context.email1
-            mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your signature details from the link below:\n\n"
+            mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your commitment details from the link below:\n\n"
             mBody_1 += context.absolute_url()+"\n\n"
             mBody_1 += "We will review your submission and once approved, your name will appear in the list of supporters.\n\n"
-            mBody_1 += "If you find that there are errors to your submission, please email afterfive2015@gmail.com\n\n"
-            mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwf.org\n\n"
+            mBody_1 += "If you find that there are errors to your submission, please email info@idwfed.org\n\n"
+            mBody_1 += "If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.idwfed.org\n\n"
             mBody_1 += "\n\n\n"
             mBody_1 += "-------------------------\n"
-            mBody_1 += "IDWF Portal\n"
-            mBody_1 += "http://www.idwf.org"
+            mBody_1 += "IDWFED Portal\n"
+            mBody_1 += "http://www.idwfed.org"
             
             try:
                 mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
