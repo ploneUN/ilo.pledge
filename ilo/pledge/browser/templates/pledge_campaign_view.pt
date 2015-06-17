@@ -53,8 +53,8 @@
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
                   <li>
-                       <img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
-                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p> 
+                       <a tal:attributes="href python: brain.getPath()"><img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p></a>
                   </li>
             </tal:element>
             
