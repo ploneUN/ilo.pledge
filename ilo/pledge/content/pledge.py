@@ -278,7 +278,7 @@ def _changeState(context, event):
             
             mSubj_1 = "Pledge Received"
             mTo_1 = context.email1
-            mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your signature details from the link below:\n\n"
+            mBody_1 = "This is to confirm that you have signed the c189 Pledge.  You may view your commitment details from the link below:\n\n"
             mBody_1 += context.absolute_url()+"\n\n"
             mBody_1 += "We will review your submission and once approved, your name will appear in the list of supporters.\n\n"
             mBody_1 += "If you find that there are errors to your submission, please email afterfive2015@gmail.com\n\n"
