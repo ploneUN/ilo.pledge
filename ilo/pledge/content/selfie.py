@@ -125,7 +125,7 @@ def _changeState(context, event):
             mBody += "\n\n"
             
             mBody += "-------------------------\n"
-            mBody += "IDWF Portal"
+            mBody += "IDWFED Portal"
             
 
             try:
