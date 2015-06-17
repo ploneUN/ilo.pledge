@@ -117,7 +117,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
 
     country = schema.TextLine(
            title=_(u"Country"),
-           required=False,
+           required=True,
         )
 
 #    domestic_workers = schema.Bool(
