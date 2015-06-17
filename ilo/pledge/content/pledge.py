@@ -257,16 +257,16 @@ def _changeState(context, event):
         context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
         if context.email1:
             ## Email to afterfive
-            mSubj = "Signature Received"
+            mSubj = "Commitment Received"
             mFrom = "info@idwfed.org"
             mTo = "afterfive2015@gmail.com, info@idwfed.org"
-            mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new signatory.\n"
+            mBody = "A site visitor has just signed the c189 Pledge. Below are the details of the new commitment.\n"
             mBody += "Name: "+context.first_name+" "+context.last_name+"\n"
             #mBody += "City: "+context.city+"\n"
             mBody += "Country: "+context.country+"\n"
             mBody += "Email: "+context.email1+"\n"
             mBody += "\n"
-            mBody += "To review the above signature, visit:\n\n"
+            mBody += "To review the above commitment, visit:\n\n"
             mBody += context.absolute_url()+"\n\n"
             mBody += "To approve the post, click on the link below:\n\n"
             mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish"
