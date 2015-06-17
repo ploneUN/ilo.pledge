@@ -1,4 +1,4 @@
-<div class='footerportlet'>
+<div tal:condition="python: context.portal_type == 'ilo.pledge.pledgecampaign'">
 <p tal:content="python: view.contents().selfie_title"></p>
 <p tal:content="python: view.contents().selfie_body"></p>
 <div class="side_viewlet state-sign" tal:condition="python: view.contents().selfie_description">
