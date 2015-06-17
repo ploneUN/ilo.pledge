@@ -10,6 +10,7 @@
                     <element>ilo.pledge.pledge</element>
                 </property>
     </condition>
+    </conditions>
   <actions>
    <action type="plone.actions.Workflow">
     <property name="transition">submit</property>
@@ -26,6 +27,7 @@
                     <element>ilo.pledge.selfie</element>
                 </property>
     </condition>
+   </conditions>
   <actions>
    <action type="plone.actions.Workflow">
     <property name="transition">submit</property>
