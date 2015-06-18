@@ -75,7 +75,7 @@
     <p><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></p>
     <center><h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
     <!-- <p>Insert map count here</p> -->
-    <div id="regions_div" style="width: 900px; height: 400px;"></div>
+    <div id="regions_div" style="width: auto; height: 400px;"></div>
     <div tal:define="pledges view/map_count" tal:condition="pledges" id='source_data' style="display: none">
       <div tal:repeat="key python: pledges.keys()" class='source_elements'>
             <span class="country" tal:content="python: key.title()">philippines</span>
