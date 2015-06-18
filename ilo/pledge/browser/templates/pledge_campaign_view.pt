@@ -16,6 +16,32 @@
                   }  
             </style>
       </metal:styleslot>
+      <metal:javascript_head fill-slot="javascript_head_slot">
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+            <script type="text/javascript">
+                  google.load("visualization", "1", {packages:["geochart"]});
+                  function drawRegionsMap(data_array) {
+                        var data = google.visualization.arrayToDataTable(data_array);
+                        var options = {};
+                        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+                        chart.draw(data, options);
+                  }
+                  
+                  $(document).ready(function(){
+                        var data_array = [['Country', 'Pledges']];
+                        $('div.source_elements').each(function(){
+                            var sub_array = [];
+                            sub_array.push($(this).find('.country').html());
+                            sub_array.push($(this).find('.country').html()+': '+$(this).find('.population').html());
+                            data_array.push(sub_array);
+                        });
+                
+                        google.setOnLoadCallback(drawRegionsMap(data_array));
+                      });
+                  
+                  
+            </script>
+      </metal:javascript_head>
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
@@ -49,6 +75,13 @@
     <p><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></p>
     <center><h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
     <!-- <p>Insert map count here</p> -->
+    <div id="regions_div" style="width: 900px; height: 400px;"></div>
+    <div tal:define="pledges view/map_count" tal:condition="pledges" id='source_data' style="display: none">
+      <div tal:repeat="key python: pledges.keys()" class='source_elements'>
+            <span class="country" tal:content="python: key.title()">philippines</span>
+			<span class="population" tal:content="python: pledges[key]">700,000</span>
+      </div>
+    </div>
     <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
