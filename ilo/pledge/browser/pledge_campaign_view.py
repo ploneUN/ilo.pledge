@@ -55,4 +55,21 @@ class Index(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 1}, portal_type='ilo.pledge.selfie', review_state='published', sort_on='Date',sort_order='reverse')[:13]
         return brains
+    
+    def map_count(self):
+        results = {}
+        pledges = self.contents()
+        for pledge in pledges:
+            obj = pledge._unrestrictedGetObject()
+            if obj.country:
+                country = obj.country.lower()
+                if country not in results:
+                    results[country] = 1
+                else:
+                    results[country] += 1
+        
+        return results
+        
+        
+    
 
