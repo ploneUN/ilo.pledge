@@ -45,6 +45,75 @@ from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransit
 from z3c.form import validator
 # Interface class; used to define content-type schema.
 
+
+countrieslist = SimpleVocabulary(
+    [SimpleTerm(value=u'Kabul', title=_(u'Kabul')),
+     SimpleTerm(value=u'Yerevan', title=_(u'Yerevan')),
+     SimpleTerm(value=u'Baku', title=_(u'Baku')),
+     SimpleTerm(value=u'Dhaka', title=_(u'Dhaka')),
+     SimpleTerm(value=u'Bahrain', title=_(u'Bahrain')),
+     SimpleTerm(value=u'Brunei', title=_(u'Brunei')),
+     SimpleTerm(value=u'Thimphu', title=_(u'Thimphu')),
+     SimpleTerm(value=u'Nicosia', title=_(u'Nicosia')),
+     SimpleTerm(value=u'Shanghai', title=_(u'Shanghai')),
+     SimpleTerm(value=u'Fiji', title=_(u'Fiji')),
+     SimpleTerm(value=u'Tbilisi', title=_(u'Tbilisi')),
+     SimpleTerm(value=u'Jakarta', title=_(u'Jakarta')),
+     SimpleTerm(value=u'Jerusalem', title=_(u'Jerusalem')),
+     SimpleTerm(value=u'Calcutta', title=_(u'Calcutta')),
+     SimpleTerm(value=u'Baghdad', title=_(u'Baghdad')),
+     SimpleTerm(value=u'Tehran', title=_(u'Tehran')),
+     SimpleTerm(value=u'Amman', title=_(u'Amman')),
+     SimpleTerm(value=u'Tokyo', title=_(u'Tokyo')),
+     SimpleTerm(value=u'Bishkek', title=_(u'Bishkek')),
+     SimpleTerm(value=u'Tarawa', title=_(u'Tarawa')),
+     SimpleTerm(value=u'Pyongyang', title=_(u'Pyongyang')),
+     SimpleTerm(value=u'Seoul', title=_(u'Seoul')),
+     SimpleTerm(value=u'Kuwait', title=_(u'Kuwait')),
+     SimpleTerm(value=u'Beirut', title=_(u'Beirut')),
+     SimpleTerm(value=u'Majuro', title=_(u'Majuro')),
+     SimpleTerm(value=u'Rangoon', title=_(u'Rangoon')),
+     SimpleTerm(value=u'Ulaanbaatar', title=_(u'Ulaanbaatar')),
+     SimpleTerm(value=u'Kuala Lumpur', title=_(u'Kuala Lumpur')),
+     SimpleTerm(value=u'Nauru', title=_(u'Nauru')),
+     SimpleTerm(value=u'Auckland', title=_(u'Auckland')),
+     SimpleTerm(value=u'Muscat', title=_(u'Muscat')),
+     SimpleTerm(value=u'Port Moresby', title=_(u'Port Moresby')),
+     SimpleTerm(value=u'Manila', title=_(u'Manila')),
+     SimpleTerm(value=u'Palau', title=_(u'Palau')),
+     SimpleTerm(value=u'Qatar', title=_(u'Qatar')),
+     SimpleTerm(value=u'Riyadh', title=_(u'Riyadh')),
+     SimpleTerm(value=u'Guadalcanal', title=_(u'Guadalcanal')),
+     SimpleTerm(value=u'Singapore', title=_(u'Singapore')),
+     SimpleTerm(value=u'Bangkok', title=_(u'Bangkok')),
+     SimpleTerm(value=u'Dushanbe', title=_(u'Dushanbe')),
+     SimpleTerm(value=u'Ashgabat', title=_(u'Ashgabat')),
+     SimpleTerm(value=u'Tongatapu', title=_(u'Tongatapu')),
+     SimpleTerm(value=u'Funafuti', title=_(u'Funafuti')),
+     SimpleTerm(value=u'Efate', title=_(u'Efate')),
+     SimpleTerm(value=u'Aden', title=_(u'Aden')),
+     SimpleTerm(value=u'Phnom Penh', title=_(u'Phnom Penh')),
+     SimpleTerm(value=u'Dili', title=_(u'Dili')),
+     SimpleTerm(value=u'Almaty', title=_(u'Almaty')),
+     SimpleTerm(value=u'Vientiane', title=_(u'Vientiane')),
+     SimpleTerm(value=u'Truk', title=_(u'Truk')),
+     SimpleTerm(value=u'Apia', title=_(u'Apia')),
+     SimpleTerm(value=u'Colombo', title=_(u'Colombo')),
+     SimpleTerm(value=u'Dubai', title=_(u'Dubai')),
+     SimpleTerm(value=u'Tahiti', title=_(u'Tahiti')),
+     SimpleTerm(value=u'Niue', title=_(u'Niue')),
+     SimpleTerm(value=u'Noumea', title=_(u'Noumea')),
+     SimpleTerm(value=u'Rarotonga', title=_(u'Rarotonga')),
+     SimpleTerm(value=u'Hong Kong', title=_(u'Hong Kong')),
+     SimpleTerm(value=u'Philippines', title=_(u'Philippines')),
+     SimpleTerm(value=u'Thailand', title=_(u'Thailand')),
+     SimpleTerm(value=u'Pago Pago', title=_(u'Pago Pago')),
+     SimpleTerm(value=u'Juba', title=_(u'Juba')),
+     SimpleTerm(value=u'North Korea', title=_(u'North Korea')),
+     SimpleTerm(value=u'South Korea', title=_(u'South Korea')),
+     SimpleTerm(value=u'Lebanon', title=_(u'Lebanon'))]
+    )
+
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
 
@@ -105,19 +174,16 @@ class IPledge(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-#    middle_initial = schema.TextLine(
-#           title=_(u"Middle Initial"),
+
+#    country = schema.TextLine(
+#           title=_(u"Country"),
 #           required=True,
 #        )
 
-#    city = schema.TextLine(
-#            title=_(u"City"),
-#            required=False,
-#         )
-
-    country = schema.TextLine(
-           title=_(u"Country"),
-           required=True,
+    country = schema.Choice(
+            title=_(u"Country"),
+            vocabulary=countrieslist,
+            required=False,
         )
 
 #    domestic_workers = schema.Bool(
