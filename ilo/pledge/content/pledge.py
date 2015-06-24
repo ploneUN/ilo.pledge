@@ -171,7 +171,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
     form.widget(pledges=CheckBoxFieldWidget)
     pledges = schema.List(
         title=u'I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions:',
-        required=False,
+        required=True,
         value_type=schema.Choice(source=pledge_details())
     )
     
