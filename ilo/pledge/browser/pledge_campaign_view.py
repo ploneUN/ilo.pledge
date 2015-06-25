@@ -5,6 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from ilo.pledge.content.pledge_detail import IPledgeDetail
 from ilo.socialsticker.content.sticker import ISticker
 from ilo.pledge.content.pledge import IPledge
+from ilo.pledge.content.selfie import ISelfie
 
 grok.templatedir('templates')
 
@@ -54,7 +55,7 @@ class Index(dexterity.DisplayForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 1}, portal_type='ilo.pledge.selfie', review_state='published', sort_on='Date',sort_order='reverse')[:13]
+        brains = catalog.unrestrictedSearchResults(object_provides=ISelfie.__identifier__, review_state='published', sort_on='Date',sort_order='reverse')[:13]
         return brains
     
     def map_contents(self):

@@ -2,6 +2,7 @@ from five import grok
 from plone.directives import dexterity, form
 from ilo.pledge.content.pledge_campaign import IPledgeCampaign
 from Products.CMFCore.utils import getToolByName
+from ilo.pledge.content.selfie import ISelfie
 
 
 grok.templatedir('templates')
@@ -19,7 +20,7 @@ class selfies_view(dexterity.DisplayForm):
     	context = self.context
     	catalog = self.catalog
     	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.selfie',review_state='published', sort_on='Date',sort_order='reverse')
+    	brains = catalog.unrestrictedSearchResults(object_provides=ISelfie.__identifier__, portal_type='ilo.pledge.selfie',review_state='published', sort_on='Date',sort_order='reverse')
     	return brains
 
 
