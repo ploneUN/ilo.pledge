@@ -17,6 +17,7 @@
      <element value="ilo.socialsticker.sticker" />
      <element value="ilo.pledge.selfie" />
      <element value="ilo.pledge.networking" />
+     <element value="ilo.pledge.pledgecampaign" />
   </property>
   <property name="allow_discussion">False</property>
 
