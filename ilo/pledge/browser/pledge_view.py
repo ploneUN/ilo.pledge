@@ -6,6 +6,8 @@ from ilo.pledge.content.pledge_detail import IPledgeDetail
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from Products.CMFDefault.utils import checkEmailAddress
+import os
+
 
 grok.templatedir('templates')
 
@@ -50,13 +52,21 @@ class Index(dexterity.DisplayForm):
         if len(context.pledges):
             return path+'/++theme++idwfed.theme/pd_img/pd_img_'+str(len(context.pledges))+'.png'
         return ''
-    
+
+    # def current_url(self):
+    #     request = self.request
+    #     field = ''
+    #     if request.form:
+    #         if 'fb_ref' in request.form:
+    #             field = request.form['fb_ref']
+    #     return field
+
     def sendEmail(self):
         request = self.request
         context = self.context
         mailhost = getToolByName(context, 'MailHost')
         if request:
-            if request.form:
+            if 'to_email' in request.form:
                 form = request.form
                 email1 = context.email1
                 
