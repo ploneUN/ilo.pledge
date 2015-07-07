@@ -134,7 +134,7 @@ class InvalidEmailAddress(ValidationError):
 class countries(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
-        countries = ['Kabul', 'Yerevan', 'Baku', 'Dhaka', 'Bahrain', 'Brunei', 'Thimphu', 'Nicosia', 'Shanghai', 'Fiji', 'Tbilisi', 'Jakarta', 'Jerusalem', 'Calcutta', 'Baghdad', 'Tehran', 'Amman', 'Tokyo', 'Bishkek', 'Tarawa', 'Pyongyang', 'Seoul', 'Kuwait', 'Beirut', 'Majuro', 'Rangoon', 'Ulaanbaatar', 'Kuala Lumpur','Nauru', 'Auckland','Muscat', 'Port Moresby', 'Manila', 'Palau', 'Qatar', 'Riyadh','Guadalcanal', 'Singapore', 'Bangkok', 'Dushanbe', 'Ashgabat','Tongatapu','Funafuti','Efate','Aden','Phnom Penh', 'Dili', 'Almaty', 'Vientiane', 'Truk', 'Apia', 'Colombo','Dubai', 'Tahiti', 'Niue', 'Noumea', 'Rarotonga', 'Hong Kong', 'Philippines', 'Thailand', 'Pago Pago', 'Juba', 'North Korea','South Korea', 'Lebanon']
+        countries = ['Kabul', 'Yerevan', 'Baku', 'Dhaka', 'Bahrain', 'Brunei', 'Thimphu', 'Nicosia', 'Shanghai', 'Fiji', 'Tbilisi', 'Jakarta', 'Jerusalem', 'Calcutta', 'Baghdad', 'Tehran', 'Amman', 'Tokyo', 'Bishkek', 'Tarawa', 'Pyongyang', 'Seoul', 'Kuwait', 'Beirut', 'Majuro', 'Rangoon', 'Ulaanbaatar', 'Kuala Lumpur','Nauru', 'Auckland','Muscat', 'Port Moresby', 'Manila', 'Palau', 'Qatar', 'Riyadh','Guadalcanal', 'Singapore', 'Bangkok', 'Dushanbe', 'Ashgabat','Tongatapu','Funafuti','Efate','Aden','Phnom Penh', 'Dili', 'Almaty', 'Vientiane', 'Truk', 'Apia', 'Colombo','Dubai', 'Tahiti', 'Niue', 'Noumea', 'Rarotonga', 'Hong Kong', 'Philippines', 'Thailand', 'Pago Pago', 'Juba', 'North Korea','South Korea', 'Lebanon','Peru','Mexico','Columbia']
         results = []
         sorted_countries = countries.sort()
         for brain in countries:
