@@ -142,6 +142,16 @@ class countries(object):
             results.append(SimpleTerm(value=brain, token=brain, title=brain))
         return SimpleVocabulary(results)
 
+class pbackground(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        pbackground = ['an employer of domestic worker(s)','a domestic worker','a concerned citizen']
+        results = []
+        sorted_pbackground = pbackground.sort()
+        for brain in pbackground:
+            results.append(SimpleTerm(value=brain, token=brain, title=brain))
+        return SimpleVocabulary(results)
+
 class pledge_details(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
@@ -185,6 +195,13 @@ class IPledge(form.Schema, IImageScaleTraversable):
            title=_(u"Last Name"),
            required=True,
         )
+
+    person_background = schema.Choice(
+           title=_(u"I am"),
+           source=pbackground(),
+           required=True,
+        )
+
 
 
 #    country = schema.TextLine(
