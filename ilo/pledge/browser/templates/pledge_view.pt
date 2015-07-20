@@ -100,6 +100,10 @@
                                   </tr>
                                   <tr>-->
                                   <tr>
+                                    <td>I am...</td>
+                                    <td tal:content="python: brain._unrestrictedGetObject().person_background"></td>
+                                  </tr>
+                                  <tr>
                                     <td>Country:</td>
                                     <td tal:content="python: brain._unrestrictedGetObject().country"></td>
                                   </tr>
