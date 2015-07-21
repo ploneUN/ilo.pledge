@@ -22,7 +22,8 @@
   <metal:content-core define-macro="content-core">
 
 
-    <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center><br>
+    <center><h5>Have you made your commitment yet? Take action TODAY!</h5>
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a><a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a></center><br>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.contents() " tal:repeat="brain brains" tal:condition="brains">
                   <li>
