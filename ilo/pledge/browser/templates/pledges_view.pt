@@ -22,7 +22,7 @@
         <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
           <center><strong>No Commitments Yet.</strong><br />
 
-            <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge">Make A Commitment</a></center>
+            <a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make A Commitment</a></center>
        
         </tal:element>
     <tal:block tal:define="brains view/contents" tal:condition="brains">
