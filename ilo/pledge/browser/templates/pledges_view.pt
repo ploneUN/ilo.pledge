@@ -18,6 +18,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       <ul class="square">
+<h3>We have made the commitment to protect the rights of domestic workers under c189 in our own home and community</h3>
         <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
           <center><strong>No Commitments Yet.</strong><br />
 
@@ -41,6 +42,8 @@
             </em>
         </p> -->
       </li>
+<h4>Have you made your commitment yet? Take action TODAY!</h4>
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a></center>
     </tal:block>
       </ul>
 
