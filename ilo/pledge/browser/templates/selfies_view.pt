@@ -6,6 +6,13 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ilo.pledge">
 <body>
+      <metal:styleslot fill-slot="style_slot">
+            <style type="text/css">
+                  #portal-column-content a.button {
+                      color: white;
+                  }  
+            </style>
+      </metal:styleslot>
     <head>
         <metal:block fill-slot="column_two_slot" />
     </head>
@@ -22,8 +29,12 @@
   <metal:content-core define-macro="content-core">
 
 
-    <center><h5>Have you made your commitment yet? Take action TODAY!</h5>
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a><a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a></center><br>
+      <div class="text-center">
+            <h5>Have you made your commitment yet? Take action TODAY!</h5>
+            <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a>
+            <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
+      </div>
+      <br />   
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.contents() " tal:repeat="brain brains" tal:condition="brains">
                   <li>
