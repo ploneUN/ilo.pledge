@@ -76,8 +76,9 @@
 <h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
       <div tal:content="structure context/pledge_campain_detail"></div>
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a></center>
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
 <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
+</center>
     <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->
       <ul class="square">
             <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
