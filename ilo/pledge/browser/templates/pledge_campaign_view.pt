@@ -27,8 +27,8 @@
                         data = google.visualization.arrayToDataTable(data_array);
                         
                         //options['dataMode'] = 'regions';
-                        options.colors = ['#FF8747', '#FFB581', '#c06000'];
-                        options.showLegend = true;
+                        options.colors = ['#C7D6D8', '#5F91C0'];
+                        
                         options.dataMode = 'regions';
                         //options.showZoomOut = true;
                         //options.zoomOutLabel = 'Zoom Out';
@@ -62,7 +62,8 @@
                         $('div.source_elements').each(function(){
                             var sub_array = [];
                             sub_array.push($(this).find('.country').html());
-                            sub_array.push($(this).find('.country').html()+': '+$(this).find('.population').html());
+                            sub_array.push(parseInt($(this).find('.population').html().replace(',','')));
+                            //sub_array.push($(this).find('.country').html()+': '+$(this).find('.population').html());
                             data_array.push(sub_array);
                         });
                 
