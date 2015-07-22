@@ -92,7 +92,10 @@
       <p class="text-center">The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
       <p class="text-center">Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>-->
       <center>
-<center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3></center>
+<center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3>
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
+<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
+</center>
       <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
             <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
                   <li>
@@ -106,8 +109,6 @@
 <h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
       <div tal:content="structure context/pledge_campain_detail"></div>
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
 </center>
     <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->
       <ul class="square">
