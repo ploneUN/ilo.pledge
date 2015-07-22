@@ -28,6 +28,7 @@
         <table width="100%" tal:define="length python:len(view.contents())/3; remainder python: length + len(view.contents())%3 ">
           <tr>
             <td tal:define="brains view/contents" tal:condition="brains">
+                  <ul>
               <li tal:repeat="brain python: brains[0:remainder]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
@@ -37,8 +38,10 @@
                 </strong>
               </a>
             </li>
+              </ul>
             </td>
             <td tal:define="brains view/contents" tal:condition="brains">
+                  <ul>
               <li tal:repeat="brain python: brains[remainder:remainder+length]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
@@ -48,8 +51,10 @@
                 </strong>
               </a>
             </li>
+              </ul>
             </td>
             <td tal:define="brains view/contents" tal:condition="brains">
+                  <ul>
               <li tal:repeat="brain python: brains[remainder+length:]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
@@ -59,6 +64,7 @@
                 </strong>
               </a>
             </li>
+              </ul>
             </td>
           
             
