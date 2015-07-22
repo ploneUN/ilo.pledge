@@ -121,7 +121,7 @@
     <!-- <p>Insert map count here</p> -->
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
-    <div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
+    <div><center><input type='button' onClick='show_world()' value='World View'/></center></div>
     <div tal:define="pledges view/map_count" tal:condition="pledges" id='source_data' style="display: none">
       <div tal:repeat="key python: pledges.keys()" class='source_elements'>
             <span class="country" tal:content="python: key.title()">philippines</span>
