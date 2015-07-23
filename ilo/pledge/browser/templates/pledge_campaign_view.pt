@@ -116,6 +116,7 @@
                   <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
             </tal:element>
       </ul>
+<a class="button expand" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View All Commitments</a>
     
     
     <center><h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
