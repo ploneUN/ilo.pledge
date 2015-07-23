@@ -253,6 +253,10 @@ class IPledge(form.Schema, IImageScaleTraversable):
         #elif not bool(re.match(pattern, self.email2  )):
         #    raise Invalid(_(u"Email 2 is not a valid email address."))
 
+    @invariant
+    def resourcesInvariant(data):
+        if not data.pledges:
+            raise Invalid(_(u"No Pledge Selected."))
 
     pass
 
