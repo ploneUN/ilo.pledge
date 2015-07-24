@@ -18,7 +18,8 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       
-<center><h4>We have made the commitment to protect the rights of domestic workers under c189 in our own home and community</h4></center>
+<center><h4 tal:content="context/commitment_header">"See who’s taken the 'My Fair Home' commitment around the world"</h4></center>
+<!--<center><h4>We have made the commitment to protect the rights of domestic workers under c189 in our own home and community</h4></center>-->
         <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
           <center><strong>No Commitments Yet.</strong><br />
 
