@@ -71,6 +71,11 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    commitment_header = schema.TextLine(
+        title=_(u"Make The Commitment Header - Pledges View"),
+        required=False,
+    )
+
     pass
 
 alsoProvides(IPledgeCampaign, IFormFieldProvider)
