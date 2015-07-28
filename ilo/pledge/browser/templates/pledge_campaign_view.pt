@@ -57,6 +57,18 @@
                         chart1.draw(data, options);
                   }
                   
+                  function set_region(){
+                        options.displayMode = 'regions';
+                        options.region = 'world';
+                        chart1.draw(data, options);
+                    }
+            
+                    function set_marker(){
+                        options.displayMode = 'markers';
+                        options.region = 'world';
+                        chart1.draw(data, options);
+                    }
+                  
                   $(document).ready(function(){
                         var data_array = [['Country', 'Pledges']];
                         $('div.source_elements').each(function(){
@@ -124,7 +136,12 @@
     <!-- <p>Insert map count here</p> -->
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
-    <div><center><input type='button' onClick='show_world()' value='World View'/></center></div>
+
+    <div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
+    <div style="float:right"><input type='button' onClick='set_marker()' value='Marker'/></div>
+    <div style="float:right"><input type='button' onClick='set_region()' value='Regional'/></div>
+    
+
     <div tal:define="pledges view/map_count" tal:condition="pledges" id='source_data' style="display: none">
       <div tal:repeat="key python: pledges.keys()" class='source_elements'>
             <span class="country" tal:content="python: key.title()">philippines</span>
