@@ -23,6 +23,18 @@ class selfies_view(dexterity.DisplayForm):
     	brains = catalog.unrestrictedSearchResults(object_provides=ISelfie.__identifier__,review_state='published', sort_on='Date',sort_order='reverse')
     	return brains
 
+    def pab_commitment_header(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 0})
+        result = ''
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            result = obj.pab_commitment_header
+
+        return result
+
 
 
 
