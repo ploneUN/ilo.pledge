@@ -7,6 +7,7 @@ from ilo.pledge.content.selfie import ISelfie
 from ilo.pledge.content.pledge_detail import IPledgeDetail
 from ilo.socialsticker.content.sticker import ISticker
 from ilo.pledge.content.pledge import IPledge
+from plone import api
 
 
 grok.templatedir('templates')
@@ -53,6 +54,11 @@ class pendingstatus_view(dexterity.DisplayForm):
             obj = brain._unrestrictedGetObject()
             result = obj.pledge_detail
         return result
+
+    def roles(self):
+        current = api.user.get_current()
+        roles = api.user.get_roles(username=str(current))
+        return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager'] ))
 
 
 
