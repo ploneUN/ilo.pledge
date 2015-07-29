@@ -1,8 +1,11 @@
-<div tal:condition="python: context.portal_type == 'ilo.pledge.pledgecampaign'">
+
 <p tal:content="python: view.contents().selfie_title"></p>
 <p tal:content="python: view.contents().selfie_body"></p>
-<div class="side_viewlet state-sign" tal:condition="python: view.contents().selfie_description">
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.pledge.selfie'" tal:content="python: view.contents().selfie_description">View All Commitments</a>
+
+<div class="side_viewlet state-sign" >
+    <a tal:condition="python: view.contents().selfie_description" class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.pledge.selfie'" tal:content="python: view.contents().selfie_description">Add a Selfie</a>
+
+    <a tal:condition="python: not view.contents().selfie_description" class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.pledge.selfie'">Add a Selfie</a>
 </div>
-</div>
+
 

@@ -23,5 +23,14 @@
                 addview=".addselfieportlet.AddForm"
                 editview=".addselfieportlet.EditForm"
                 />
+
+                <plone:portlet
+                name="addpendingportlet.portlet"
+                interface=".addpendingportlet.IContentNavigation"
+                assignment=".addpendingportlet.Assignment"
+                renderer=".addpendingportlet.Renderer"
+                addview=".addpendingportlet.AddForm"
+                editview=".addpendingportlet.EditForm"
+                />
 </configure>
 

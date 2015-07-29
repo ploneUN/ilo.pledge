@@ -1,12 +1,16 @@
 <div tal:condition="python: context.portal_type == 'ilo.pledge.pledgecampaign'">
 <p tal:content="python: view.contents().pledges_title"></p>
 
-<div class="side_viewlet state-sign" tal:condition="python: view.contents().pledges_description">
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: view.contents().pledges_description">View All Commitments</a>
+<div class="side_viewlet state-sign">
+    <a class="button expand" tal:condition="python: view.contents().pledges_description" tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: view.contents().pledges_description">View All Commitments</a>
+
+    <a class="button expand" tal:condition="python: not view.contents().pledges_description" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View All Commitments</a>
 </div>
 
-<div class="side_viewlet state-sign" tal:condition="python: view.contents().selfie_description">
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/selfies_view'" tal:content="python: view.contents().selfie_description">View All Commitments</a>
+<div class="side_viewlet state-sign" >
+    <a tal:condition="python: view.contents().selfie_description" class="button expand" tal:attributes="href python: context.absolute_url()+'/selfies_view'" tal:content="python: view.contents().selfie_description">View All Selfies</a>
+
+    <a tal:condition="python: not view.contents().selfie_description" class="button expand" tal:attributes="href python: context.absolute_url()+'/selfies_view'">View All Selfies</a>
 </div>
 </div>
 
