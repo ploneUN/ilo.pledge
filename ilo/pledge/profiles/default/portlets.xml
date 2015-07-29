@@ -2,7 +2,7 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
-<!-- <portlet
+<portlet
             addview="allpledgesportlet.portlet"
             title="My Fair Home"
             description=""
@@ -12,9 +12,9 @@
             title="Add Selfie"
             description=""
     />
- -->
 
- <assignment name="allpledgesportlet" category="content_type"
+
+<!--  <assignment name="allpledgesportlet" category="content_type"
     key="ilo.pledge.pledgecampaign" manager="plone.leftcolumn"
     type="allpledgesportlet.portlet" visible="True">
     <property name="portlet_title">All Pledges</property>
@@ -24,7 +24,7 @@
     key="ilo.pledge.pledgecampaign" manager="plone.leftcolumn"
     type="addselfieportlet.portlet" visible="True">
     <property name="portlet_title">Add Selfie</property>
-  </assignment>
+  </assignment> -->
 
  <assignment name="addpendingportlet" category="content_type"
     key="ilo.pledge.pledgecampaign" manager="plone.leftcolumn"
