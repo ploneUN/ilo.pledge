@@ -73,7 +73,7 @@
         </table>
     <tal:block>
 
-<center><h5 tal:content="context/pab_commitment_header">"See who’s taken the 'My Fair Home' commitment around the world"</h5>
+<center><h5 tal:content="context/pab_commitment_header">"Have you made your commitment yet? Take action TODAY!"</h5>
 <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a></center>
     </tal:block>
 
