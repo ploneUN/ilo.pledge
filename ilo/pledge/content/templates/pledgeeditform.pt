@@ -79,10 +79,12 @@
     <tal:main-macro metal:define-macro="main">
       <h1 class="documentFirstHeading" tal:content="string:Make the Commitment" />
     <div id="content-core">
+
             <div id="pledge-logo" class="right">
                   <!-- loaded image here -->
             </div>
             <div class="pledge-form">
+               <b><p tal:content="python: view.contents()"></p></b>
                   <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
                   <span id="current_url" tal:content="context/absolute_url" style='display: none' />
             </div>
