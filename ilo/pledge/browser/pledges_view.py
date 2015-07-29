@@ -3,7 +3,7 @@ from plone.directives import dexterity, form
 from ilo.pledge.content.pledge_campaign import IPledgeCampaign
 from Products.CMFCore.utils import getToolByName
 from ilo.pledge.content.pledge_detail import IPledgeDetail
-from ilo.socialsticker.content.sticker import ISticker
+#from ilo.socialsticker.content.sticker import ISticker
 from ilo.pledge.content.pledge import IPledge
 
 grok.templatedir('templates')
