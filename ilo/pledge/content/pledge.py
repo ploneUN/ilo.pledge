@@ -402,7 +402,7 @@ class PledgeAddForm(dexterity.AddForm):
     def catalog(self):
         return getToolByName(self.context, 'portal_catalog')
 
-    def contents(self):
+    def add_pledge_header(self):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
@@ -422,7 +422,7 @@ class PledgeEditForm(dexterity.EditForm):
     def catalog(self):
         return getToolByName(self.context, 'portal_catalog')
 
-    def contents(self):
+    def add_pledge_header(self):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.aq_parent.getPhysicalPath())

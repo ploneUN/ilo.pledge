@@ -84,7 +84,7 @@
                   <!-- loaded image here -->
             </div>
             <div class="pledge-form">
-               <b><p tal:content="python: view.contents()"></p></b>
+               <b><p tal:content="python: view.add_pledge_header()"></p></b>
                   <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
                   <span id="current_url" tal:content="context/absolute_url" style='display: none' />
             </div>
