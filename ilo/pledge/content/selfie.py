@@ -87,8 +87,8 @@ def _createObject(context, event):
     context.setTitle(context.selfie_owner)
 
     #exclude from navigation code
-    behavior = IExcludeFromNavigation(context)
-    behavior.exclude_from_nav = True
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
 
     context.reindexObject()
     return

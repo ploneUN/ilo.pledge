@@ -2,7 +2,9 @@
 	<object name="navtree_properties" meta_type="Plone Property Sheet">
 		<property name="metaTypesNotToList" type="lines" purge="False">
 			<element value="ilo.pledge.pledge"/>
-		
+			<element value="ilo.pledge.networking"/>
+			<element value="ilo.pledge.pledgedetail"/>
+			<element value="ilo.pledge.selfie"/>
 		</property>
 	</object>
 </object>
