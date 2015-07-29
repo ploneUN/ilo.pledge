@@ -33,7 +33,7 @@ class pendingstatus_view(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         # brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledge',review_state='published')
-        brains = catalog.unrestrictedSearchResults(object_provides=IPledge.__identifier__, review_state='draft')
+        brains = catalog.unrestrictedSearchResults(object_provides=IPledge.__identifier__, review_state='pending')
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
