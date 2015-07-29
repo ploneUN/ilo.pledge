@@ -19,13 +19,7 @@
   <metal:content-core define-macro="content-core">
       
 <center><h4 tal:content="context/commitment_header">List of Pending Pledges</h4></center>
-<!--<center><h4>We have made the commitment to protect the rights of domestic workers under c189 in our own home and community</h4></center>-->
-       <!--  <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
-          <center><strong>No Commitments Yet.</strong><br />
 
-            <a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make A Commitment</a></center>
-       
-        </tal:element> -->
         <table width="100%" tal:define="length python:len(view.contents())/3; remainder python: length + len(view.contents())%3 ">
           <tr>
             <td tal:define="brains view/contents" tal:condition="brains">

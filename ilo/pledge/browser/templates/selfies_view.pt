@@ -28,9 +28,8 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-
       <div class="text-center">
-            <h5>Have you made your commitment yet? Take action TODAY!</h5>
+            <h5 tal:content="python: view.pab_commitment_header()">Have you made your commitment yet? Take action TODAY!</h5>
             <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a>
             <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
       </div>
