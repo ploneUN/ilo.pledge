@@ -87,8 +87,8 @@ def _createObject(context, event):
     parent.manage_renameObject(id, full_name )
     context.setTitle(context.full_name)
 
-    behavior = IExcludeFromNavigation(context)
-    behavior.exclude_from_nav = True
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
 
     context.reindexObject()
     return
