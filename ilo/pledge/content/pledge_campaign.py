@@ -76,6 +76,12 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+#pledge header above button make the commitment (Have you made your commitment yet? Take action TODAY!)
+    pab_commitment_header = schema.TextLine(
+        title=_(u"Pledges Header (Above Make Commitment Button)"),
+        required=False,
+    )
+
     #field added on Pledge View: I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions: 
     add_pledge_header = schema.TextLine(
         title=_(u"I Commit Header - Add Pledge"),
