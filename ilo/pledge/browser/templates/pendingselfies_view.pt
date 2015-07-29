@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ilo.pledge">
+<body>
+      <metal:styleslot fill-slot="style_slot">
+            <style type="text/css">
+                  #portal-column-content a.button {
+                      color: white;
+                  }  
+            </style>
+      </metal:styleslot>
+    <head>
+        <metal:block fill-slot="column_two_slot" />
+    </head>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+    
+    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
+    if needed.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+
+      <div class="text-center">
+            <h5>List of Private Selfies</h5>
+           <!--  <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a>
+            <a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a> -->
+      </div>
+      <br />   
+      <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+            <tal:element tal:define="brains python: view.contents() " tal:repeat="brain brains" tal:condition="brains">
+                  <li>
+                       <a tal:attributes="href python: brain.getPath()"><img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p></a>
+                  </li>
+            </tal:element>
+      </ul>
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
