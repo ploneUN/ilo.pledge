@@ -27,6 +27,9 @@
     ul.formTabs{
       display: none !important;
     }
+    #formfield-form-widgets-pledges > label{
+      display: none;
+    }
       </style>  
 </metal:styleslot>
 <metal:javascript_head fill-slot="javascript_head_slot">
