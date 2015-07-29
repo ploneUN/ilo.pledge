@@ -23,8 +23,8 @@
         <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
           <center><strong>No Commitments Yet.</strong><br />
 
-            <a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make A Commitment</a></center>
-       
+          <!--   <a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make A Commitment</a></center>
+        -->
         </tal:element>
         <table width="100%" tal:define="length python:len(view.contents())/3; remainder python: length + len(view.contents())%3 ">
           <tr>
