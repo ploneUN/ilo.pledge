@@ -25,6 +25,9 @@
     .pledge-form .field{
       clear: none;
     }
+    #formfield-form-widgets-pledges > label{
+      display: none;
+    }
       </style>  
 </metal:styleslot>
 
