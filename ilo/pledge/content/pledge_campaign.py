@@ -76,6 +76,15 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    #field added on Pledge View: I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions: 
+    add_pledge_header = schema.TextLine(
+        title=_(u"I Commit Header - Add Pledge"),
+        required=False,
+        default=_(u"I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions: "),)
+
+
+
+
     pass
 
 alsoProvides(IPledgeCampaign, IFormFieldProvider)

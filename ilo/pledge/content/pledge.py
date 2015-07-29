@@ -181,7 +181,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
     """
     form.widget(pledges=CheckBoxFieldWidget)
     pledges = schema.List(
-        title=u'I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions:',
+        # title=u'I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions:',
         required=True,
         value_type=schema.Choice(source=pledge_details())
     )
@@ -307,8 +307,8 @@ def _createObject(context, event):
     context.setTitle(new_id)
 
     #exclude from navigation code
-    behavior = IExcludeFromNavigation(context)
-    behavior.exclude_from_nav = True
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
 
     context.reindexObject()
     return
@@ -397,10 +397,41 @@ class PledgeAddForm(dexterity.AddForm):
     grok.name('ilo.pledge.pledge')
     template = ViewPageTemplateFile('templates/pledgeaddform.pt')
     form.wrap(False)
-    
+
+    @property
+    def catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    def add_pledge_header(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 0})
+        result = ''
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            result = obj.add_pledge_header
+
+        return result
 
 class PledgeEditForm(dexterity.EditForm):
     grok.context(IPledge)
     template = ViewPageTemplateFile('templates/pledgeeditform.pt')
+
+    @property
+    def catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    def add_pledge_header(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.aq_parent.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 0})
+        result = ''
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            result = obj.add_pledge_header
+
+        return result
 
 
