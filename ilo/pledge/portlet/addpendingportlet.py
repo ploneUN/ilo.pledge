@@ -48,7 +48,9 @@ class Renderer(base.Renderer):
 
     def roles(self):
         current = api.user.get_current()
-        roles = api.user.get_roles(username=str(current))
+        roles = []
+        if str(current) != 'Anonymous User':
+            roles = api.user.get_roles(username=str(current))
         return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager'] ))
 
 class AddForm(base.AddForm):
