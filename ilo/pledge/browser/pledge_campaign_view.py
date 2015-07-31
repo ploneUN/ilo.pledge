@@ -71,13 +71,26 @@ class Index(dexterity.DisplayForm):
         for pledge in pledges:
             obj = pledge._unrestrictedGetObject()
             if obj.country:
-                country = obj.country.lower()
+                country = self.correct_country_map(obj.country.lower())
                 if country not in results:
                     results[country] = 1
                 else:
                     results[country] += 1
         
         return results
+    
+    def correct_country_map(self, country):
+        countries = {'bolivia (plurinational state of)':'plurinational state of bolivia',
+                     'congo democratic republic of the ':'democratic republic of the congo',
+                     'iran islamic republic of': 'islamic republic of iran',
+                     'korea democratic peoples republic of': 'democratic peoples republic of korea',
+                     'korea republic of': 'republic of korea',
+                     'macedonia republic of': 'republic of macedonia',
+                     'tanzania united republic of': 'united republic of tanzania',
+                     'venezuela (bolivarian republic of)': 'bolivarian republic of venezuela'}
+        if country in countries:
+            return countries[country]
+        return country
         
         
     
