@@ -209,7 +209,7 @@ class IPledge(form.Schema, IImageScaleTraversable):
 #           required=True,
 #        )
 
-    country = schema.Choice(title = u"Country", source=countries(), required=False)
+    country = schema.Choice(title = u"Country", source=countries(), required=True)
 
 
 #    domestic_workers = schema.Bool(
