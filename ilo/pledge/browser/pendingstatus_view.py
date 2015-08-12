@@ -56,8 +56,10 @@ class pendingstatus_view(dexterity.DisplayForm):
         return result
 
     def roles(self):
-        current = api.user.get_current()
-        roles = api.user.get_roles(username=str(current))
+        current = str(api.user.get_current())
+        roles = []
+        if current != 'Anonymous User': 
+            roles = api.user.get_roles(username=current)
         return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager'] ))
 
 
