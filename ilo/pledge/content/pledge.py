@@ -384,11 +384,18 @@ def _changeState(context, event):
             mBody_1 += "IDWFED Portal\n"
             mBody_1 += "http://www.idwfed.org"
             
+            if '@fakemail' not in context.email1:
+                try:
+                    mailhost.send(mBody_1, mto=mTo_1, mfrom=mFrom, subject=mSubj_1, immediate=True, charset='utf8', msg_type=None)
+                except Exception, e:
+                    context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+                    pass
+            
             try:
                 mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
                 
-                mailhost.send(mBody_1, mto=mTo_1, mfrom=mFrom, subject=mSubj_1, immediate=True, charset='utf8', msg_type=None)
-            except ValueError, e:
+                
+            except Exception, e:
                 context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
                 return None
 
