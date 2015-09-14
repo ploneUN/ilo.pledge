@@ -119,7 +119,7 @@
             </tal:element>
             
       </ul>
-      <a tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'">View All Seflies</a>
+      <a tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'" tal:content="python: 'View All ('+str(len(view.selfies()))+') Selfies'"></a>
 <h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
       <div tal:content="structure context/pledge_campain_detail"></div>
 <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
@@ -137,9 +137,14 @@
     <!-- <p>Insert map count here</p> -->
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
-
+    
     <div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
     <div style="float:right"><input type='button' onClick='set_marker()' value='Marker'/></div>
+    <tal:block tal:condition="view/map_count">
+      <div style="float: right">
+          <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
+      </div>
+    </tal:block>
     <!--<div style="float:right"><input type='button' onClick='set_region()' value='Regional'/></div>-->
     
 
