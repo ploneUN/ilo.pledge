@@ -138,7 +138,7 @@
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
     
-    <ul class="button-group round">
+    <ul class="button-group round text-right">
       <tal:block tal:condition="view/map_count"><li>
             <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
       </li></tal:block>
