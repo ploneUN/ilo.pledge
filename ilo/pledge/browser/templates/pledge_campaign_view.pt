@@ -138,13 +138,19 @@
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
     
-    <div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
+    <ul class="button-group round text-right">
+      <tal:block tal:condition="view/map_count"><li>
+            <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
+      </li></tal:block>
+      <li><input class="button" type='button' onClick='set_marker()' value='Marker'/></li>
+      <li><input class="button" type='button' onClick='show_world()' value='World View'/></li>
+    </ul>
+    
+    <!--<div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
     <div style="float:right"><input type='button' onClick='set_marker()' value='Marker'/></div>
     <tal:block tal:condition="view/map_count">
-      <div style="float: right">
           <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
-      </div>
-    </tal:block>
+    </tal:block>-->
     <!--<div style="float:right"><input type='button' onClick='set_region()' value='Regional'/></div>-->
     
 
