@@ -140,7 +140,7 @@
     
     <ul class="button-group round text-right">
       <tal:block tal:condition="view/map_count"><li>
-            <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
+            <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
       </li></tal:block>
       <li><input class="button" type='button' onClick='set_marker()' value='Marker'/></li>
       <li><input class="button" type='button' onClick='show_world()' value='World View'/></li>
