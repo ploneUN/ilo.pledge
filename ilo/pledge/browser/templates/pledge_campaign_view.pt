@@ -138,7 +138,7 @@
             <div class="large-6 columns text-center">
                   <ul class="button-group radius">
                         <tal:block tal:condition="view/map_count"><li>
-                              <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View all <span class="large-text" tal:content="python:'('+str(len(view.map_count()))+')'"></span> Pledge/s</a>
+                              <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View all <span class="large-text" tal:content="python:'('+str(len(view.map_count()))+')'"></span> Pledges/s</a>
                         </li></tal:block>
                         <li>
                               <a class="button" tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'">View All <span class="large-text" tal:content="python: '('+str(len(view.selfies()))+')'"></span> Selfies</a>
