@@ -55,7 +55,7 @@ class Index(dexterity.DisplayForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=ISelfie.__identifier__, review_state='published', sort_on='Date',sort_order='reverse')[:13]
+        brains = catalog.unrestrictedSearchResults(object_provides=ISelfie.__identifier__, review_state='published', sort_on='Date',sort_order='reverse')
         return brains
     
     def map_contents(self):
