@@ -136,7 +136,7 @@
                   <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View All Commitments</a>
             </div>
             <div class="large-6 columns text-center">
-                  <ul class="button-group radius text-right">
+                  <ul class="button-group radius">
                         <tal:block tal:condition="view/map_count"><li>
                               <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View all <span class="large-text" tal:content="python:'('+str(len(view.map_count()))+')'"></span> Pledges/s</a>
                         </li></tal:block>
