@@ -97,128 +97,70 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-    <tal:block tal:define="brains view/contents">
-      <!--<table class="plain" width="100%">-->
-      <!--<div class="pledege-logo text-center">
-            <img src="/++theme++idwfed.theme/pd_img/c189_banner.png" alt="Pledge Logo" />
-      </div>-->
-      <!--<p class="text-center">There are 53 million domestic workers worldwide – working as cleaners, housekeepers, and as carers for children and the elderly.</p>
-      <p class="text-center">The Domestic Workers Convention No. 189 (C189) is a xx that affirms that domestic work is work, and that domestic workers are entitled to labour rights protections.</p>
-      <p class="text-center">Find out more about the rights of domestic workers – and take the pledge to protect the rights of domestic workers under C189 in your own home and community.</p>-->
+    <tal:block tal:define="brains view/contents;
+                          selfies view/selfies;
+                          selfies_count python: len(selfies);
+                          pledge_details view/pledge_details;
+                          map_contents view/map_contents;
+                          pledges_count python: len(map_contents);
+                          pledges view/map_count;
+                          pledges_keys python: pledges.keys();
+                          url context/absolute_url">
       <center>
-<center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3>
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
-</center>
-      <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
-            <tal:element tal:define="brains python: view.selfies()[:12] " tal:repeat="brain brains" tal:condition="brains">
-                  <li>
-                       <a tal:attributes="href python: brain.getPath()"><img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
-                        <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p></a>
-                  </li>
-            </tal:element>
-            
-      </ul>
-      <!--<a tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'" tal:content="python: 'View All ('+str(len(view.selfies()))+') Selfies'"></a>-->
-<h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
-      <div tal:content="structure context/pledge_campain_detail"></div>
-<!--<iframe width="560" height="315" src="https://www.youtube.com/embed/N5QziEiDOLY" frameborder="0" allowfullscreen></iframe>-->
-</center>
-    <!--<p>I pledge to uphold the principles of C189, and protect and promote the rights of domestic workers in my home and community, by taking the following actions:</p>-->
+        <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3>
+        <a class="button" tal:attributes="href string:${url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
+        <a class="button" tal:attributes="href string:${url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
+        </center>
+        <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
+          <tal:element tal:repeat="brain python: selfies[:12]" tal:condition="selfies">
+            <li>
+             <a tal:attributes="href python: brain.getPath()">
+              <img class="th" tal:attributes="src python: brain.getPath()+'/@@images/selfie_image/thumb'"/>
+              <p class="text-center" tal:content="python: brain._unrestrictedGetObject().selfie_owner"></p></a>
+            </li>
+              </tal:element>
+        </ul>
+        <h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
+        <div tal:content="structure context/pledge_campain_detail"></div>
+      </center>
       <ul class="square">
-            <tal:element tal:define="brains python: view.pledge_details() " tal:repeat="brain brains" tal:condition="brains">
-                  <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
-            </tal:element>
+        <tal:element  tal:repeat="brain pledge_details" tal:condition="pledge_details">
+          <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
+        </tal:element>
       </ul>
-      
       <div class="row">
-            <div class="large-4 columns text-center">
-                  <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View All Commitments</a>
-            </div>
-            <div class="large-4 columns text-center">
-                  <tal:block tal:condition="view/map_contents">
-                        <a class="button" tal:attributes="href python: context.absolute_url()+'/pledges_view'">View all <span class="large-text" tal:content="python: len(view.map_contents())"></span> Pledge/s</a>
-                  </tal:block>
-            </div>
-            <div class="large-4 columns text-center">
-                  <a class="button" tal:condition="python: len(view.selfies()) > 12 " tal:attributes="href python: context.absolute_url() +'/selfies_view'">View All <span class="large-text" tal:content="python: len(view.selfies())"></span> Selfies</a>
-            </div>
+        <div class="large-4 columns text-center">
+          <a class="button" tal:attributes="href string:${url}/pledges_view">View All Commitments</a>
+        </div>
+        <div class="large-4 columns text-center">
+          <tal:block tal:condition="map_contents">
+            <a class="button" tal:attributes="href string:${url}/pledges_view">View all 
+              <span class="large-text" tal:content="pledges_count"></span> Pledge/s
+            </a>
+          </tal:block>
+        </div>
+        <div class="large-4 columns text-center">
+          <a class="button" tal:attributes="href string:${url}/selfies_view">View All 
+            <span class="large-text" tal:content="selfies_count"></span> Selfies
+          </a>
+        </div>
       </div>
-      
-    <center><h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3></center>
-    <!-- <p>Insert map count here</p> -->
+    <center>
+      <h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3>
+    </center>
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
-    
     <ul class="button-group radius text-right">
       <li><input class="button" type='button' onClick='set_marker()' value='Marker'/></li>
       <li><input class="button" type='button' onClick='show_world()' value='World View'/></li>
     </ul>
-    
-    <!--<div style="float:right"><input type='button' onClick='show_world()' value='World View'/></div>
-    <div style="float:right"><input type='button' onClick='set_marker()' value='Marker'/></div>
-    <tal:block tal:condition="view/map_count">
-          <a tal:attributes="href python: context.absolute_url()+'/pledges_view'" tal:content="python: 'View All ('+str(len(view.map_count()))+') Pledge/s'"></a>
-    </tal:block>-->
-    <!--<div style="float:right"><input type='button' onClick='set_region()' value='Regional'/></div>-->
-    
-
-    <div tal:define="pledges view/map_count" tal:condition="pledges" id='source_data' style="display: none">
-      <div tal:repeat="key python: pledges.keys()" class='source_elements'>
-            <span class="country" tal:content="python: key.title()">philippines</span>
+    <div tal:condition="pledges" id='source_data' style="display: none">
+      <div tal:repeat="key pledges_keys" class='source_elements'>
+        <span class="country" tal:content="python: key.title()">philippines</span>
 			<span class="population" tal:content="python: pledges[key]">700,000</span>
       </div>
     </div>
     </tal:block>
-<!--
-    <thead>
-    <th>Name</th>
-    <th>City</th>
-    <th>Country</th>
-    <th>Email</th>
-    <th>Pledges</th>
-    </thead>
-    <tbody tal:repeat="brain brains">
-      <tr tal:define="obj python: brain._unrestrictedGetObject()">
-        <td tal:content="python: '%s %s %s' % (obj.first_name, obj.middle_initial, obj.last_name)"></td>
-        <td tal:content="python: obj.city"></td>
-        <td tal:content="python: obj.country"></td>
-        <td tal:content="python: obj.email1"></td>
-        <td tal:define="pledges python:obj.pledges" >
-           <tal:element tal:repeat="pledge pledges" tal:condition="python: obj.pledges">
-            <p tal:content="python: view.pledge_detail(pledge)"></p>
-        </tal:element>
-        </td>
-      </tr>
-    </tbody>
-     </table>
-    </tal:block>
--->
-  <!--   <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
-
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
-
-    <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset> -->
-
   </metal:content-core>
 </metal:main>
 
