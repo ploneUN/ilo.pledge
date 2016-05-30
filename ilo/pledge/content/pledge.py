@@ -330,18 +330,19 @@ def modifyobject(context, event):
     
     test = ''
     num = 0
-    if new_id in object_Ids:
-        test = filter(lambda name: new_id in name, object_Ids)
-        new_id = new_id +'_' + str(len(test))
-
-    parent.manage_renameObject(id, new_id )
-    context.setTitle(new_id)
-
-    #exclude from navigation code
-    #behavior = IExcludeFromNavigation(context)
-    #behavior.exclude_from_nav = True
-
-    context.reindexObject()
+    if context.id != new_id:
+        if new_id in object_Ids:
+            test = filter(lambda name: new_id in name, object_Ids)
+            new_id = new_id +'_' + str(len(test))
+    
+        parent.manage_renameObject(id, new_id )
+        context.setTitle(new_id)
+    
+        #exclude from navigation code
+        #behavior = IExcludeFromNavigation(context)
+        #behavior.exclude_from_nav = True
+    
+        context.reindexObject()
     return
 
 @grok.subscribe(IPledge, IAfterTransitionEvent)
