@@ -43,6 +43,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.DCWorkflow.interfaces import IBeforeTransitionEvent, IAfterTransitionEvent
 from z3c.form import validator
+import uuid
 # Interface class; used to define content-type schema.
 
 
@@ -169,10 +170,11 @@ class pledge_details(object):
         return SimpleVocabulary(results)
 
 def validateaddress(value):
-    try:
-        checkEmailAddress(value)
-    except EmailAddressInvalid:
-        raise InvalidEmailAddress(value)
+    if value:
+        try:
+            checkEmailAddress(value)
+        except EmailAddressInvalid:
+            raise InvalidEmailAddress(value)
     return True
 
 class IPledge(form.Schema, IImageScaleTraversable):
@@ -188,12 +190,12 @@ class IPledge(form.Schema, IImageScaleTraversable):
     
     first_name = schema.TextLine(
            title=_(u"First Name"),
-           required=True,
+           required=False,
         )
 
     last_name = schema.TextLine(
            title=_(u"Last Name"),
-           required=True,
+           required=False,
         )
 
     person_background = schema.Choice(
@@ -222,11 +224,13 @@ class IPledge(form.Schema, IImageScaleTraversable):
     email1 = schema.TextLine(
            title=_(u"Email Address"),
            constraint=validateaddress,
+           required=False,
         )
 
     email2 = schema.TextLine(
            title=_(u"Verify Email Address"),
-           constraint=validateaddress
+           constraint=validateaddress,
+           required=False,
         )
 
     
@@ -264,19 +268,20 @@ alsoProvides(IPledge, IFormFieldProvider)
 
 class CheckDuplicateEmail(validator.SimpleFieldValidator):
     def validate(self, value):
-        super(CheckDuplicateEmail, self).validate(value)
-        context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
-        if context.portal_type == 'ilo.pledge.pledgecampaign':
-            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
-            emails = [brain._unrestrictedGetObject().email1 for brain in brains]
-            if value in emails:
-                raise Invalid(_("Email already exists."))
-        elif context.portal_type == 'ilo.pledge.pledge':
-            brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
-            emails = [brain._unrestrictedGetObject().email1 for brain in brains if brain.UID != self.context.UID()]
-            if value in emails:
-                raise Invalid(_("Email already exists."))
+        if value:
+            super(CheckDuplicateEmail, self).validate(value)
+            context = self.context
+            catalog = getToolByName(context, 'portal_catalog')
+            if context.portal_type == 'ilo.pledge.pledgecampaign':
+                brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+                emails = [brain._unrestrictedGetObject().email1 for brain in brains]
+                if value in emails:
+                    raise Invalid(_("Email already exists."))
+            elif context.portal_type == 'ilo.pledge.pledge':
+                brains = catalog.unrestrictedSearchResults(object_provides = IPledge.__identifier__)
+                emails = [brain._unrestrictedGetObject().email1 for brain in brains if brain.UID != self.context.UID()]
+                if value in emails:
+                    raise Invalid(_("Email already exists."))
             
 
 validator.WidgetValidatorDiscriminators(CheckDuplicateEmail, field=IPledge['email1'])
@@ -293,6 +298,11 @@ def _createObject(context, event):
     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1})
     for brain in brains:
         object_Ids.append(brain.id)
+    
+    
+    if not context.email1:
+        context.email1 = uuid.uuid4().__str__().replace('-','')[:10] + '@anonymous.pledge'
+        context.email2 = uuid.uuid4().__str__().replace('-','')[:10] + '@anonymous.pledge'
     
     email1 = str(idnormalizer.normalize(context.email1))
     new_id = email1.replace('-','_')
@@ -352,7 +362,7 @@ def _changeState(context, event):
     mailhost = getToolByName(context, 'MailHost')
     if curr_state == 'pending':
         context.plone_utils.addPortalMessage(_(u"Congratulations on taking the pledge."), "success")
-        if context.email1:
+        if context.email1 and '@anonymous.pledge' not in context.email1:
             ## Email to afterfive
             mSubj = "Commitment Received"
             mFrom = "info@idwfed.org"
