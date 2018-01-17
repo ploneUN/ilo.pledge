@@ -16,6 +16,7 @@
                   }
                   
             </style>
+            <style tal:replace="structure view/header_css" />
       </metal:styleslot>
       <metal:javascript_head fill-slot="javascript_head_slot">
             <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -85,7 +86,7 @@
                         
                         var txt_dir = document.getElementById('txt_dir').innerHTML;
                         if (txt_dir == 'rtl'){
-                              $('h1.documentFirstHeading').addClass('change_txt_dir');
+                              //$('h1.documentFirstHeading').addClass('change_txt_dir');
                               //$('.change_txt_dir').attr('dir', 'rtl');
                         }
                       });
