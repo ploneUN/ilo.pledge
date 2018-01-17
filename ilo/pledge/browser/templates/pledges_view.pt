@@ -6,6 +6,9 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="ilo.pledge">
 <body>
+<metal:styleslot fill-slot="style_slot">
+    <style tal:replace="structure view/header_css" />
+</metal:styleslot>
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
@@ -18,7 +21,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       
-<center><h4 tal:content="context/commitment_header">"See who’s taken the 'My Fair Home' commitment around the world"</h4></center>
+<center tal:define="txt_dir view/text_direction_value"><h4 tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="context/commitment_header">"See who’s taken the 'My Fair Home' commitment around the world"</h4></center>
 <!--<center><h4>We have made the commitment to protect the rights of domestic workers under c189 in our own home and community</h4></center>-->
         <tal:element tal:define="brains view/contents" tal:condition="python: not brains">
           <center><strong>No Commitments Yet.</strong><br />
@@ -73,8 +76,8 @@
         </table>
     <tal:block>
 
-<center><h5 tal:content="context/pab_commitment_header">"Have you made your commitment yet? Take action TODAY!"</h5>
-<a class="button" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Make the Commitment</a></center>
+<center tal:define="txt_dir view/text_direction_value"><h5 tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="context/pab_commitment_header">"Have you made your commitment yet? Take action TODAY!"</h5>
+<a tal:define="txt_dir view/text_direction_value" tal:attributes="href string:${context/absolute_url}/++add++ilo.pledge.pledge; class python: txt_dir=='rtl' and 'change_txt_dir button' or 'button'" tal:content="context/button_label">Make the Commitment</a></center>
     </tal:block>
 
 
