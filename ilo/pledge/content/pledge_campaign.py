@@ -30,6 +30,11 @@ from collective import dexteritytextindexer
 
 from ilo.pledge import MessageFactory as _
 
+text_direction_vocab = SimpleVocabulary(
+    [SimpleTerm(value=u'ltr', title=_(u'Left to Right')),
+     SimpleTerm(value=u'rtl', title=_(u'Right to Left')),
+    ])
+
 
 # Interface class; used to define content-type schema.
 
@@ -90,7 +95,11 @@ class IPledgeCampaign(form.Schema, IImageScaleTraversable):
         default=_(u"I commit to uphold the standards of Convention No. 189, and to protect and promote the rights of domestic workers in my home and community, by taking the following actions: "),)
 
 
-
+    text_direction = schema.Choice(
+        title = u'Text Direction',
+        vocabulary = text_direction_vocab,
+        required = False,
+        )
 
     pass
 
