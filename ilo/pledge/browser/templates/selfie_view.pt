@@ -44,7 +44,7 @@
             </div>
       </div>
 <center><h5>Have you made your commitment yet? Take action TODAY!</h5>
-<a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make the Commitment</a></center>
+<a tal:define="txt_dir view/text_direction_value" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'; class python: txt_dir=='rtl' and 'button change_txt_dir' or 'button'" tal:content="context/button_label">Make the Commitment</a></center>
       
     <!--<center>
       <a tal:attributes="href python: context.absolute_url()+'/@@images/selfie_image'">
