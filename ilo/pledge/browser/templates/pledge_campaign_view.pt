@@ -136,9 +136,9 @@
         <h5><strong><center tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
         <div tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="structure context/pledge_campain_detail"></div>
       </center>
-      <ul class="square">
+      <ul tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir square' or 'square'">
         <tal:element  tal:repeat="brain pledge_details" tal:condition="pledge_details">
-          <li tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
+          <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
         </tal:element>
       </ul>
       <div class="row">
