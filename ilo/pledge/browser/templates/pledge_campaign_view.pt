@@ -13,7 +13,8 @@
                   }
                   #portal-column-content a.button {
                       color: white;
-                  }  
+                  }
+                  
             </style>
       </metal:styleslot>
       <metal:javascript_head fill-slot="javascript_head_slot">
@@ -81,7 +82,16 @@
                         });
                 
                         google.setOnLoadCallback(drawRegionsMap(data_array));
+                        
+                        var txt_dir = document.getElementById('txt_dir').innerHTML;
+                        if (txt_dir == 'rtl'){
+                              $('h1.documentFirstHeading').addClass('change_txt_dir');
+                              //$('.change_txt_dir').attr('dir', 'rtl');
+                        }
                       });
+                  
+                  
+                  
                   
                   
             </script>
@@ -97,6 +107,7 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+      <span style="display: none" id="txt_dir" tal:content="view/text_direction_val | nothing"></span>
     <tal:block tal:define="brains view/contents;
                           selfies view/selfies;
                           selfies_count python: len(selfies);
@@ -105,11 +116,12 @@
                           pledges_count python: len(map_contents);
                           pledges view/map_count;
                           pledges_keys python: pledges.keys();
-                          url context/absolute_url">
+                          url context/absolute_url;
+                          txt_dir view/text_direction_val;">
       <center>
-        <center><h3 tal:content="context/selfie_header">“Our community. Share your messages of support and photos with #myfairhome”</h3>
-        <a class="button" tal:attributes="href string:${url}/++add++ilo.pledge.pledge" tal:content="context/button_label">Take the Commitment</a>
-        <a class="button" tal:attributes="href string:${url}/++add++ilo.pledge.selfie" tal:content="context/selfie_button_label">Add Selfie</a>
+        <center><h3 tal:content="context/selfie_header" tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing">“Our community. Share your messages of support and photos with #myfairhome”</h3>
+        <a tal:attributes="href string:${url}/++add++ilo.pledge.pledge; class python: txt_dir=='rtl' and 'button change_txt_dir' or 'button'" tal:content="context/button_label">Take the Commitment</a>
+        <a tal:attributes="href string:${url}/++add++ilo.pledge.selfie; class python: txt_dir=='rtl' and 'button change_txt_dir' or 'button'" tal:content="context/selfie_button_label">Add Selfie</a>
         </center>
         <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-6">
           <tal:element tal:repeat="brain python: selfies[:12]" tal:condition="selfies">
@@ -120,12 +132,12 @@
             </li>
               </tal:element>
         </ul>
-        <h5><strong><center tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
-        <div tal:content="structure context/pledge_campain_detail"></div>
+        <h5><strong><center tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="context/i_pledge">I pledge to uphold these rights in my home and community</center></strong></h5>
+        <div tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="structure context/pledge_campain_detail"></div>
       </center>
       <ul class="square">
         <tal:element  tal:repeat="brain pledge_details" tal:condition="pledge_details">
-          <li tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
+          <li tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="python: brain._unrestrictedGetObject().pledge_detail"/>
         </tal:element>
       </ul>
       <div class="row">
@@ -146,7 +158,7 @@
         </div>
       </div>
     <center>
-      <h3 tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3>
+      <h3 tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:content="context/map_header">"See who’s taken the 'My Fair Home' commitment around the world"</h3>
     </center>
     <div id="regions_div" style="width: auto; height: 400px;"></div>
     <br/>
