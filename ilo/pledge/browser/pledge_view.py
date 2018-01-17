@@ -117,3 +117,10 @@ class Index(dexterity.DisplayForm):
                         request.RESPONSE.redirect('/'.join(context.getPhysicalPath()))
                     
     
+    def text_direction_value(self):
+        parent = self.context.aq_parent
+        value = 'ltr'
+        if hasattr(parent, 'text_direction'):
+            if parent.text_direction:
+                value = parent.text_direction
+        return value
