@@ -98,6 +98,15 @@ class Index(dexterity.DisplayForm):
             if self.context.text_direction:
                 value = self.context.text_direction
         return value
+    
+    def header_css(self):
+        return """
+                <style ="text/css">
+                    h1.documentFirstHeading{
+                        direction: %s;
+                    }
+                </style>
+        """ % (self.text_direction_val())
         
         
     
