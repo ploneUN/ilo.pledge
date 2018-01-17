@@ -91,6 +91,13 @@ class Index(dexterity.DisplayForm):
         if country in countries:
             return countries[country]
         return country
+    
+    def text_direction_val(self):
+        value = 'ltr'
+        if hasattr(self.context, 'text_direction'):
+            if self.context.text_direction:
+                value = self.context.text_direction
+        return value
         
         
     
