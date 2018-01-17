@@ -34,6 +34,22 @@ class selfies_view(dexterity.DisplayForm):
             result = obj.pab_commitment_header
 
         return result
+    
+    def text_direction_value(self):
+        value = 'ltr'
+        if hasattr(self.context, 'text_direction'):
+            if self.context.text_direction:
+                value = self.context.text_direction
+        return value
+    
+    def header_css(self):
+        return """
+                <style ="text/css">
+                    h1.documentFirstHeading{
+                        direction: %s;
+                    }
+                </style>
+        """ % (self.text_direction_value())
 
 
 
