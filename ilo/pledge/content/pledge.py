@@ -431,6 +431,22 @@ class PledgeAddForm(dexterity.AddForm):
             result = obj.add_pledge_header
 
         return result
+    
+    def text_direction_value(self):
+        value = 'ltr'
+        if hasattr(self.context, 'text_direction'):
+            if self.context.text_direction:
+                value = self.context.text_direction
+        return value
+    
+    def header_css(self):
+        return """
+                <style ="text/css">
+                    div#formfield-form-widgets-pledges{
+                        direction: %s;
+                    }
+                </style>
+        """ % (self.text_direction_value())
 
 class PledgeEditForm(dexterity.EditForm):
     grok.context(IPledge)
@@ -451,5 +467,22 @@ class PledgeEditForm(dexterity.EditForm):
             result = obj.add_pledge_header
 
         return result
+    
+    def text_direction_value(self):
+        parent = self.context.aq_parent
+        value = 'ltr'
+        if hasattr(parent, 'text_direction'):
+            if parent.text_direction:
+                value = parent.text_direction
+        return value
+    
+    def header_css(self):
+        return """
+                <style ="text/css">
+                    div#formfield-form-widgets-pledges{
+                        direction: %s;
+                    }
+                </style>
+        """ % (self.text_direction_value())
 
 
