@@ -63,8 +63,8 @@
 
     <!--<a tal:attributes="href python: context.aq_parent.aq_parent.absolute_url() +'/networking/'">Networking</a>-->
     
-    <ul class='pledge-item' tal:define="pledges context/pledges; txt_dir view/text_direction_value" tal:condition="pledges">
-      <li tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir' or nothing" tal:repeat="pledge pledges" tal:content="python: view.pledge_detail(pledge)"/>
+    <ul tal:define="pledges context/pledges; txt_dir view/text_direction_value" tal:condition="pledges" tal:attributes="class python: txt_dir=='rtl' and 'change_txt_dir pledge-item' or 'pledge-item'">
+      <li tal:repeat="pledge pledges" tal:content="python: view.pledge_detail(pledge)"/>
     </ul>
     
     
