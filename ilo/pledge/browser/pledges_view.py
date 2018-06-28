@@ -59,5 +59,9 @@ class pledges_view(dexterity.DisplayForm):
                 </style>
         """ % (self.text_direction_value())
 
+    def number_per_column(self):
+        contents = self.contents()
+        return len(contents)//3 + (len(contents) % 3 > 0)
+
 
 
