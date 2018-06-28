@@ -29,15 +29,15 @@
           <!--   <a class="button" tal:attributes="href python: context.aq_parent.absolute_url() + '/++add++ilo.pledge.pledge'" tal:content="context/button_label">Make A Commitment</a></center>
         -->
         </tal:element>
-        <table width="100%" tal:define="length python:len(view.contents())/3; remainder python: length + len(view.contents())%3 ">
+        <table width="100%" tal:condition="view/contents" tal:define="total_length python: len(view.contents()); per_col view/number_per_column;">
           <tr>
             <td tal:define="brains view/contents" tal:condition="brains">
-                  <ul class="square">
-              <li tal:repeat="brain python: brains[0:remainder]">
+                  <ul class="square" tal:condition="python: 0*per_col<total_length">
+              <li tal:repeat="brain python: brains[0:per_col]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
-                  <span tal:content="python: brain['firstname'] + ' '"/>
-                  <span tal:content="python: brain['lastname'] + ', '"/>
+                  <span tal:content="python: '%s ' % brain['firstname']"/>
+                  <span tal:content="python: '%s, ' % brain['lastname']"/>
                   <span tal:content="python: brain['country']"/>
                 </strong>
               </a>
@@ -45,12 +45,12 @@
               </ul>
             </td>
             <td tal:define="brains view/contents" tal:condition="brains">
-                  <ul class="square">
-              <li tal:repeat="brain python: brains[remainder:remainder+length]">
+                  <ul class="square" tal:condition="python: 1*per_col<total_length">
+              <li tal:repeat="brain python: brains[1*per_col:2*per_col]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
-                  <span tal:content="python: brain['firstname'] + ' '"/>
-                  <span tal:content="python: brain['lastname'] + ', '"/>
+                  <span tal:content="python: '%s ' % brain['firstname']"/>
+                  <span tal:content="python: '%s, ' % brain['lastname']"/>
                   <span tal:content="python: brain['country']"/>
                 </strong>
               </a>
@@ -58,12 +58,12 @@
               </ul>
             </td>
             <td tal:define="brains view/contents" tal:condition="brains">
-                  <ul class="square">
-              <li tal:repeat="brain python: brains[remainder+length:]">
+                  <ul class="square" tal:condition="python: 2*per_col<total_length">
+              <li tal:repeat="brain python: brains[2*per_col:]">
                <a tal:attributes="href python: brain['path']"> 
                 <strong>
-                  <span tal:content="python: brain['firstname'] + ' '"/>
-                  <span tal:content="python: brain['lastname'] + ', '"/>
+                  <span tal:content="python: '%s ' % brain['firstname']"/>
+                  <span tal:content="python: '%s, ' % brain['lastname']"/>
                   <span tal:content="python: brain['country']"/>
                 </strong>
               </a>
