@@ -61,7 +61,7 @@ class pledges_view(dexterity.DisplayForm):
 
     def number_per_column(self):
         contents = self.contents()
-        return len(contents)//3 + (len(contents) % 3 > 0)
+        return int(len(contents)/3) + (len(contents) % 3 > 0)
 
 
 
