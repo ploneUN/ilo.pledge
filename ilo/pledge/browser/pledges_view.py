@@ -21,8 +21,8 @@ class pledges_view(dexterity.DisplayForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledge',review_state='published')
-        #brains = catalog.unrestrictedSearchResults(object_provides=IPledge.__identifier__, review_state='published')
+        #brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.pledge.pledge',review_state='published')
+        brains = catalog.unrestrictedSearchResults(portal_type='ilo.pledge.pledge', review_state='published')
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
